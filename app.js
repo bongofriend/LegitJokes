@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const userController = require("./controllers/users");
+const jokeController = require("./controllers/jokes");
 
 const app = express();
 const router = express.Router();
@@ -12,6 +13,9 @@ app.use(bodyParser.json());
 
 //Config route
 router.route("/user").post(userController.postUsers);
+
+router.route("/joke").post(jokeController.postJoke);
+router.route("/joke").get(jokeController.getJoke);
 
 app.use("/api",router);
 

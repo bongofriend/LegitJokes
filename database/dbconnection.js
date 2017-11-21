@@ -1,13 +1,14 @@
 const Sequelize = require("sequelize");
 const tables = require("./tables");
 const Promise = require("bluebird");
+const moment = require("moment");
 
 //Database configuration
 const _config = {
-    host: "",
-    user: "",
-    password: "",
-    database: ""
+    host: "localhost",
+    user: "root",
+    password: "mertos2001",
+    database: "jokeapi"
 };
 
 //Etablish connection to DB
@@ -32,7 +33,27 @@ const Users = db.define("Users", tables.userSchema, {
     timestamps: false
 });
 
+const Jokes = db.define("Jokes",tables.jokeSchema,{
+    timestamps: false
+});
+
+ 
 //TODO: Add hooks for before/after executing a query
+Jokes.beforeCreate(function(joke,options){
+    return new Promise((resolve,reject) => {
+        Jokes.count()
+        .then(count => {
+            count += 1;
+            joke.id = count;
+            return resolve(true);
+        })
+        .catch((err) => {
+            return reject(err);
+        })
+    }) 
+})
+
 module.exports = {
-    Users: Users
+    Users: Users,
+    Jokes: Jokes
 }
