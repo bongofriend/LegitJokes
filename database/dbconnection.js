@@ -17,7 +17,7 @@ const db = new Sequelize(_config.database, _config.user, _config.password, {
     logging: false
 });
 
-//Test conncetion db connection
+//Test conncetion
 db.authenticate()
     .then(() => {
         console.log("Connection to Database etablished")
