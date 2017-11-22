@@ -63,3 +63,36 @@ exports.getJoke = function(req,res){
         })
     }
 }
+
+exports.voteForJoke = function(req,res){
+    let id = req.query.id
+    let vote = req.query.vote
+    if (id && vote){
+        queries.voteJoke(id,vote)
+        .then((isSuccess) => {
+            if(isSuccess){
+                res.json({
+                    Status: "Ok",
+                    Message: "Vote saved"
+                })
+            } else {
+                res.json({
+                    Status: "Error",
+                    Message: "Could not save vote"
+                })
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.json({
+                Status: "Error",
+                Message: "An Error Occured"
+            })
+        })
+    } else {
+        res.json({
+            Status: "Error",
+            Message: "Missing fields"
+        })
+    }
+}
