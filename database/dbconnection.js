@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const tables = require("./tables");
 const Promise = require("bluebird");
-const moment = require("moment");
+const hasher =  require("./hasher");
 
 //Database configuration
 const _config = {
@@ -39,6 +39,17 @@ const Jokes = db.define("Jokes",tables.jokeSchema,{
 
  
 //TODO: Add hooks for before/after executing a query
+Users.beforeCreate(function(user,options){
+    return hasher.hash(user.Password)
+    .then((hash) => {
+        user.Password = hash;
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+})
+
+
 Jokes.beforeCreate(function(joke,options){
     return new Promise((resolve,reject) => {
         Jokes.count()

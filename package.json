@@ -9,6 +9,7 @@
   "author": "bongofriend",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
@@ -16,6 +17,7 @@
     "mysql2": "^1.5.1",
     "nodemon": "^1.12.1",
     "passport": "^0.4.0",
+    "passport-custom": "^1.0.5",
     "sequelize": "^4.22.9"
   }
 }

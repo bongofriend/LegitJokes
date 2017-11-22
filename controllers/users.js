@@ -21,9 +21,9 @@ exports.postUsers = function(req, res) {
             } 
         })
         .catch((err) => {
-            console.log("An Error Occured");
+            console.log(err);
             res.json({
-                Status: "Err",
+                Status: "Error",
                 Message: "An Error Occured"
             })
         })
