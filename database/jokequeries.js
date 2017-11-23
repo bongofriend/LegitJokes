@@ -3,7 +3,6 @@ const userqueries = require("../database/userqueries");
 const votequeries = require("../database/votequeries");
 const Promise = require("bluebird");
 
-var joke;
 
 var insertJoke = function(username,content,category){
     return new Promise((resolve,reject) => {
@@ -17,8 +16,9 @@ var insertJoke = function(username,content,category){
                     id: 0,
                 })
                 .then((res) => {
-                    joke = res
-                    return resolve(true);
+                    if(res)
+                        return resolve(true);
+                    return resolve(false);
                 })
                 .catch((err) => {
                     return reject(err);
