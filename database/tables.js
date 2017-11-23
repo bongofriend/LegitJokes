@@ -40,7 +40,28 @@ const jokeSchema = {
 
 }
 
+const voteSchema = {
+    voteid: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    jokeid: {
+        type: Sequelize.INTEGER,
+        //allowNull: false
+    },
+    username: {
+        type: Sequelize.STRING,
+        //allowNull: false
+    },
+    votetype: {
+        type: Sequelize.STRING,
+        //allowNull: false
+    }
+}
+
 module.exports = {
     userSchema: userSchema,
-    jokeSchema: jokeSchema
+    jokeSchema: jokeSchema,
+    voteSchema: voteSchema
 }

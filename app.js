@@ -12,10 +12,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //Config route
+//TODO: Add category routing 
 router.route("/user").post(userController.postUsers);
 
 router.route("/joke").post(jokeController.postJoke);
 router.route("/joke").get(jokeController.getJoke);
+
 router.route("/vote").get(jokeController.voteForJoke);
 app.use("/api",router);
 

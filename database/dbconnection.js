@@ -37,6 +37,10 @@ const Jokes = db.define("Jokes",tables.jokeSchema,{
     timestamps: false
 });
 
+const Votes = db.define("Votes",tables.voteSchema,{
+    timestamps: false
+})
+
  
 //TODO: Add hooks for before/after executing a query
 Users.beforeCreate(function(user,options){
@@ -64,7 +68,10 @@ Jokes.beforeCreate(function(joke,options){
     }) 
 })
 
+Votes.sync();
+
 module.exports = {
     Users: Users,
-    Jokes: Jokes
+    Jokes: Jokes,
+    Votes: Votes
 }

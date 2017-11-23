@@ -67,8 +67,9 @@ exports.getJoke = function(req,res){
 exports.voteForJoke = function(req,res){
     let id = req.query.id
     let vote = req.query.vote
-    if (id && vote){
-        queries.voteJoke(id,vote)
+    let username = req.query.username
+    if (id && vote && username){
+        queries.voteJoke(id,vote,username)
         .then((isSuccess) => {
             if(isSuccess){
                 res.json({

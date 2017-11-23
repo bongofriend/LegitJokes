@@ -1,5 +1,6 @@
 const Jokes = require("./dbconnection").Jokes;
 const userqueries = require("../database/userqueries");
+const votequeries = require("../database/votequeries");
 const Promise = require("bluebird");
 
 var joke;
@@ -49,30 +50,39 @@ var getJokeById = function(id){
     })
 }
 
-var voteJoke = function(id,vote){
+var voteJoke = function(id,vote,username){
     return new Promise ((resolve,reject) => {
         getJokeById(id)
         .then((result) => {
-            if (result){
-                if (vote == "up"){
+           if (result){
+               votequeries.insertVote(username,id,vote)
+               .then((isSuccess) => {
+                   if(isSuccess){
+                   if (vote === "up"){
                     Jokes.upsert({
                         id: id,
                         upvotes: result.upvotes + 1
                     })
+                    return resolve(true) 
+                   } else if (vote === "down"){
+                    Jokes.upsert({
+                        id: id,
+                        downvotes: result.downvotes + 1
+                    })
                     return resolve(true)
+                   }
                 }
-                else if (vote === "down"){
-                        Jokes.upsert({
-                            id: id,
-                            downvotes: result.downvotes + 1
-                        })
-                        return resolve(true)
-                }
-            } else {
-                return resolve(false);
-            }
+                   else
+                        return resolve(false)
+               })
+               .catch((err) => {
+                   console.log(err)
+                   return reject(err)
+               })
+           }
         })
         .catch((err) => {
+            console.log(err)
             return reject(err)
         })
     })
@@ -84,3 +94,4 @@ module.exports = {
     voteJoke: voteJoke,
     insertJoke: insertJoke
 }
+
