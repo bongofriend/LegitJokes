@@ -21,7 +21,7 @@ exports.hash = function(data){
 
 exports.compare = function(data,hash){
     return new Promise((resolve,reject) => {
-        bcrypt.compare(data,hash,(isMatch,err) => {
+        bcrypt.compare(data,hash,(err,isMatch) => {
             if (err){
                 return reject(err)
             }

@@ -2,18 +2,11 @@ const Sequelize = require("sequelize");
 const tables = require("./tables");
 const Promise = require("bluebird");
 const hasher =  require("./hasher");
-
-//Database configuration
-const _config = {
-    host: "localhost",
-    user: "root",
-    password: "mertos2001",
-    database: "jokeapi"
-};
+const config = require("../config").dbconfig;
 
 //Etablish connection to DB
-const db = new Sequelize(_config.database, _config.user, _config.password, {
-    host: _config.host,
+const db = new Sequelize(config.database, config.user, config.password, {
+    host: config.host,
     dialect: "mysql",
     logging: false
 });

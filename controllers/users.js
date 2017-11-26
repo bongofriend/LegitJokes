@@ -1,4 +1,8 @@
 const queries = require("../database/userqueries")
+const jwt = require("jsonwebtoken");
+const hasher = require("../database/hasher");
+const jwtconfig = require("../config").jwtconfig;
+
 
 //Handle requests and responses for Endpoint /api/users
 exports.postUsers = function(req, res) {
@@ -31,6 +35,50 @@ exports.postUsers = function(req, res) {
         res.json({
             Status: "Error",
             Message: "Username/Password is missing"
+        })
+    }
+}
+
+exports.authenticateUser = function(req,res){
+    let username = req.body.username;
+    let password = req.body.password
+    if (!username || !password){
+        res.json({
+            Status: "Error",
+            Message: "Username/Password is missing"
+        })
+    } else {
+        queries.findUser(username)
+        .then((user) => {
+            if (!user) {
+                res.json({
+                    Status: "Error",
+                    Message: "Could not find User"
+                })
+            } else {
+                hasher.compare(password,user.Password)
+                .then((isMatch) => {
+                    if (isMatch){
+                        var token = jwt.sign(user.UName,jwtconfig.secret)
+                        res.json({
+                            Status: "Success",
+                            token: token
+                        })
+                    } else {
+                        res.json({
+                            Status: "Error",
+                            Message: "Check your password"
+                        })
+                    }
+                })
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.json({
+                Status: "Error",
+                Message: "An Error Occured"
+            })
         })
     }
 }

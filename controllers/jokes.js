@@ -1,8 +1,9 @@
 const queries = require("../database/jokequeries");
+const jwt = require("jsonwebtoken");
 const Promise = require("bluebird");
 
 exports.postJoke = function(req,res){
-    let username = req.body.username;
+    let username = jwt.decode(req.header("Authorization").replace("Bearer ",""))
     let content = req.body.content;
     let category = req.body.category;
     if (username && content && category){
@@ -11,7 +12,7 @@ exports.postJoke = function(req,res){
             if (isSuccess){
                 res.json({
                     Status: "Ok",
-                    Message: "Joke save"
+                    Message: "Joke saved"
                 })
             } else {
                 res.json({
@@ -67,7 +68,7 @@ exports.getJoke = function(req,res){
 exports.voteForJoke = function(req,res){
     let id = req.query.id
     let vote = req.query.vote
-    let username = req.query.username
+    let username = jwt.decode(req.header("Authorization").replace("Bearer ",""))
     if (id && vote && username){
         queries.voteJoke(id,vote,username)
         .then((isSuccess) => {
