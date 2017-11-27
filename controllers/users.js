@@ -5,6 +5,15 @@ const jwtconfig = require("../config").jwtconfig;
 
 
 //Handle requests and responses for Endpoint /api/users
+
+/**
+ * @api {post} /user/register Register an Acoount
+ * @apiName PostUser  
+ * @apiGroup User
+ * 
+ * @apiParam {String} username Username
+ * @apiParam {String} password Password
+ */
 exports.postUsers = function(req, res) {
     let username = req.body.username;
     let password = req.body.password;

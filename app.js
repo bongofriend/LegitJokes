@@ -11,6 +11,7 @@ const router = express.Router();
 const port = process.env.PORT || 3000;
 
 //Set up middleware
+app.use(express.static(__dirname + "/views"))
 app.use(passport.initialize());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -24,7 +25,7 @@ router.route("/categories").get(categoryController.getCategories);
 router.route("/vote").get(passport.authenticate("jwt-strat",{session: false}),jokeController.voteForJoke);
 app.use("/api",router);
 app.use("/",(req,res) => {
-	res.send("Server Running")
+	res.render(__dirname + "/api-docs-generator/index")
 })
 
 
