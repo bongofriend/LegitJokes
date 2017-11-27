@@ -7,7 +7,7 @@ const jwtconfig = require("../config").jwtconfig;
 //Handle requests and responses for Endpoint /api/users
 
 /**
- * @api {post} /user/register Register an Acoount
+ * @api {post} /user/register Register an Account
  * @apiName PostUser  
  * @apiGroup User
  * 
@@ -48,6 +48,17 @@ exports.postUsers = function(req, res) {
     }
 }
 
+/**
+ * @api {post} user/authenticate Exchange Username and Password for a JWT
+ * @apiGroup User
+ * @apiParam {String} password Password of the User
+ * @apiParam {String} username Username of the User
+ * @apiSuccessExample {json} Response: 
+ *{
+ *  Status: "Ok"
+ *  token: "UserToken"   
+ *}
+ */
 exports.authenticateUser = function(req,res){
     let username = req.body.username;
     let password = req.body.password

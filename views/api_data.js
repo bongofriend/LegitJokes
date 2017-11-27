@@ -164,7 +164,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "/user/register",
-    "title": "Register an Acoount",
+    "title": "Register an Account",
     "name": "PostUser",
     "group": "User",
     "parameter": {
@@ -190,5 +190,44 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "controllers/users.js",
     "groupTitle": "User"
+  },
+  {
+    "type": "post",
+    "url": "user/authenticate",
+    "title": "Exchange Username and Password for a JWT",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Password of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username of the User</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Response: ",
+          "content": "{\n Status: \"Ok\"\n token: \"UserToken\"   \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "controllers/users.js",
+    "groupTitle": "User",
+    "name": "PostUserAuthenticate"
   }
 ] });
