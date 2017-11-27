@@ -1,8 +1,9 @@
 exports.dbconfig = {
-    host: "localhost",
-    user: "root",
-    password: "mertos2001",
-    database: "jokeapi"
+    host: "sql11.freesqldatabase.com",
+    user: "sql11207437",
+    password: "DNXiNVXwtS",
+    database: "sql11207437",
+    port: 3306
 };
 
 exports.jwtconfig = {
