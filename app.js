@@ -23,6 +23,10 @@ router.route("/joke").get(jokeController.getJoke);
 router.route("/categories").get(categoryController.getCategories);
 router.route("/vote").get(passport.authenticate("jwt-strat",{session: false}),jokeController.voteForJoke);
 app.use("/api",router);
+app.use("/",(req,res) => {
+	res.send("Server Running")
+})
+
 
 //Listen on defined port
 app.listen(port,function(err){
