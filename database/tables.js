@@ -60,8 +60,20 @@ const voteSchema = {
     }
 }
 
+const categoriesSchema = {
+    id: {
+        type: Sequelize.STRING,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    name: {
+        type: Sequelize.STRING
+    }
+}
+
 module.exports = {
     userSchema: userSchema,
     jokeSchema: jokeSchema,
-    voteSchema: voteSchema
+    voteSchema: voteSchema,
+    categoriesSchema: categoriesSchema
 }

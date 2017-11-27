@@ -7,6 +7,7 @@ const config = require("../config").dbconfig;
 //Etablish connection to DB
 const db = new Sequelize(config.database, config.user, config.password, {
     host: config.host,
+    port: config.port,
     dialect: "mysql",
     logging: false
 });
@@ -32,7 +33,11 @@ const Jokes = db.define("Jokes",tables.jokeSchema,{
 
 const Votes = db.define("Votes",tables.voteSchema,{
     timestamps: false
-})
+});
+
+const Categories = db.define("Categories",tables.categoriesSchema,{
+    timestamps: false
+});
 
  
 //TODO: Add hooks for before/after executing a query
@@ -66,5 +71,6 @@ Votes.sync();
 module.exports = {
     Users: Users,
     Jokes: Jokes,
-    Votes: Votes
+    Votes: Votes,
+    Categories: Categories
 }
