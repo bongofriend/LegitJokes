@@ -79,6 +79,8 @@ var voteJoke = function(id,vote,username){
                    console.log(err)
                    return reject(err)
                })
+           } else {
+               return resolve(false)
            }
         })
         .catch((err) => {
