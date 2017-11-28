@@ -53,7 +53,6 @@ exports.postJoke = function(req,res){
  * @api {get} /joke Get Jokes From A Category
  * @apiGroup Jokes 
  * @apiParam {Number} category CategoryID of the desired Jokes
- * @apiHeader {String} Authorization A Unique JWT Based on the Username
  * @apiSuccessExample {json} Response: 
  *{
  *  Status: "Ok"
@@ -66,10 +65,6 @@ exports.postJoke = function(req,res){
  *      "upvotes": 0,
  *      "downvotes": 0
  *  }]                
- *}
- * @apiHeaderExample {json} Authorization-Example: 
- *{
- *  "Authorization": Bearer Token
  *}
  */
 exports.getJoke = function(req,res){
@@ -145,6 +140,11 @@ exports.voteForJoke = function(req,res){
     }
 }
 
+/**
+ * @api {get} /joke/random Get A Random Joke
+ * @apiGroup Jokes
+ * 
+ */
 exports.getRandomJoke = function(req,res){
     categoryqueries.getRandomJoke()
     .then((joke) => {

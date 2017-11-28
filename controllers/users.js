@@ -104,6 +104,15 @@ exports.authenticateUser = function(req,res){
     }
 }
 
+/**
+ * @api {get} /user/coins Increase/Decrease Coins
+ * @apiGroup User
+ * @apiParam {String} type "up"/"down" for increasing/decreasing Coins by 1
+ * @apiHeaderExample {json} Authorization-Example: 
+ *        {
+ *          "Authorization": Bearer Token
+ *        }
+ */
 exports.updateCoins = function(req,res){
     let username = jwt.decode(req.header("Authorization").replace("Bearer ",""))
     let coin = req.query.type

@@ -1,7 +1,7 @@
 const queries = require("../database/categoryqueries");
 /**
  * @api {get} /categories Get All Available Categories
- * @apiGroup Jokes 
+ * @apiGroup Category 
  */
 exports.getCategories = function(req,res){
     queries.getAllCategories()

@@ -3,10 +3,10 @@ define({ "api": [
     "type": "get",
     "url": "/categories",
     "title": "Get All Available Categories",
-    "group": "Jokes",
+    "group": "Category",
     "version": "0.0.0",
     "filename": "controllers/category.js",
-    "groupTitle": "Jokes",
+    "groupTitle": "Category",
     "name": "GetCategories"
   },
   {
@@ -27,26 +27,6 @@ define({ "api": [
         ]
       }
     },
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>A Unique JWT Based on the Username</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Authorization-Example: ",
-          "content": "{\n \"Authorization\": Bearer Token\n}",
-          "type": "json"
-        }
-      ]
-    },
     "success": {
       "examples": [
         {
@@ -60,6 +40,16 @@ define({ "api": [
     "filename": "controllers/jokes.js",
     "groupTitle": "Jokes",
     "name": "GetJoke"
+  },
+  {
+    "type": "get",
+    "url": "/joke/random",
+    "title": "Get A Random Joke",
+    "group": "Jokes",
+    "version": "0.0.0",
+    "filename": "controllers/jokes.js",
+    "groupTitle": "Jokes",
+    "name": "GetJokeRandom"
   },
   {
     "type": "get",
@@ -160,6 +150,38 @@ define({ "api": [
     "filename": "controllers/jokes.js",
     "groupTitle": "Jokes",
     "name": "PostJokeSubmit"
+  },
+  {
+    "type": "get",
+    "url": "/user/coins",
+    "title": "Increase/Decrease Coins",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "type",
+            "description": "<p>&quot;up&quot;/&quot;down&quot; for increasing/decreasing Coins by 1</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "examples": [
+        {
+          "title": "Authorization-Example: ",
+          "content": "{\n  \"Authorization\": Bearer Token\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "controllers/users.js",
+    "groupTitle": "User",
+    "name": "GetUserCoins"
   },
   {
     "type": "post",
