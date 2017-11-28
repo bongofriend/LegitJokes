@@ -4,6 +4,7 @@ const hasher = require("../database/hasher");
 const jwtconfig = require("../config").jwtconfig;
 
 
+
 //Handle requests and responses for Endpoint /api/users
 
 /**
@@ -99,6 +100,39 @@ exports.authenticateUser = function(req,res){
                 Status: "Error",
                 Message: "An Error Occured"
             })
+        })
+    }
+}
+
+exports.updateCoins = function(req,res){
+    let username = jwt.decode(req.header("Authorization").replace("Bearer ",""))
+    let coin = req.query.type
+    if (username && coin){
+        queries.updateCoins(username,coin)
+        .then((isFailure) => {
+            if(!isFailure){
+                res.json({
+                    Status: "Ok",
+                    Message: "Coins updated"
+                })
+            } else {
+                res.json({
+                    Status: "Error",
+                    Message: "Could not Update Coins"
+                })
+            }
+        })
+        .catch((err) => {
+            console.log(err)
+            res.json({
+                Status: "Error",
+                Message: "An Error Occured"
+            })
+        })
+    } else {
+        res.json({
+            Status: "Error",
+            Message: "Missing Query Parameter"
         })
     }
 }

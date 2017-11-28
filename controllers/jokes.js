@@ -1,4 +1,5 @@
-const queries = require("../database/jokequeries");
+const jokequeries = require("../database/jokequeries");
+const categoryqueries = require("../database/categoryqueries");
 const jwt = require("jsonwebtoken");
 const Promise = require("bluebird");
 
@@ -18,7 +19,7 @@ exports.postJoke = function(req,res){
     let content = req.body.content;
     let category = req.body.category;
     if (username && content && category){
-        queries.insertJoke(username,content,category)
+        jokequeries.insertJoke(username,content,category)
         .then((isSuccess) => {
             if (isSuccess){
                 res.json({
@@ -78,7 +79,7 @@ exports.getJoke = function(req,res){
         if(!limit){
             limit = 20;
         }
-        queries.getJokesByCategory(category,limit)
+        jokequeries.getJokesByCategory(category,limit)
         .then((data) => {
             res.json({
                 Status: "Ok",
@@ -142,4 +143,28 @@ exports.voteForJoke = function(req,res){
             Message: "Missing fields"
         })
     }
+}
+
+exports.getRandomJoke = function(req,res){
+    categoryqueries.getRandomJoke()
+    .then((joke) => {
+        if(joke){
+            res.json({
+                Status: "Ok",
+                data : joke
+            })
+        } else {
+            res.json({
+                Status: "Error",
+                Message: "Could not getJoke"
+            })
+        }
+    })
+    .catch((err) => {
+        console.log(err);
+        res.json({
+            Status: "Error",
+            Message: "An Error Occured"
+        })
+    })
 }

@@ -33,7 +33,40 @@ var insertUser = function(username,password){
     })
 }
 
+var updateCoins = function(username,coin){
+    return new Promise((resolve,reject) => {
+        findUser(username)
+        .then((user) => {
+            if(user){
+                let coinsNew = user.Coins;
+                if (coin === "up")
+                    coinsNew = coinsNew + 1;
+                else if(coin === "down" && user.Coins > 0) 
+                    coinsNew = coinsNew - 1;
+                    Users.upsert({
+                        UName: username,
+                        Coins: coinsNew
+                    })
+                    .then((isSuccess) => {
+                        return resolve(isSuccess)
+                    })
+                    .catch((err) => {
+                        return reject(err);
+                    })
+                } else {
+                 return resolve(false)
+            }
+        })
+        .catch((err) => {
+            return reject(err); 
+        })
+    })
+}
+
 module.exports = {
     insertUser: insertUser,
-    findUser: findUser
+    findUser: findUser,
+    updateCoins: updateCoins
 }
+
+

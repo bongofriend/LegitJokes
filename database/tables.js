@@ -5,6 +5,7 @@ const moment = require("moment");
 const userSchema = {
     UName: { type: Sequelize.STRING, primaryKey: true },
     Password: { type: Sequelize.STRING },
+    Coins: {type: Sequelize.INTEGER, defaultValue:0}
 };
 
 const jokeSchema = {
