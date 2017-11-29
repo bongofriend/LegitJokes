@@ -98,7 +98,7 @@ exports.getJoke = function(req,res){
 /**
  * @api {get} /vote Vote for a Joke
  * @apiGroup Jokes
- * @apiParam {Number} ID ID of the Joke
+ * @apiParam {Number} id ID of the Joke
  * @apiParam {String} vote "up" for Upvote and "down" for Downvote
  * @apiHeader {String} Authorization A Unique JWT Based on the Username
  * @apiHeaderExample {json} Authorization-Example: 

@@ -63,7 +63,7 @@ define({ "api": [
             "group": "Parameter",
             "type": "Number",
             "optional": false,
-            "field": "ID",
+            "field": "id",
             "description": "<p>ID of the Joke</p>"
           },
           {
