@@ -156,7 +156,7 @@ exports.getRandomJoke = function(req,res){
         } else {
             res.json({
                 Status: "Error",
-                Message: "Could not getJoke"
+                Message: "Could not get Joke"
             })
         }
     })

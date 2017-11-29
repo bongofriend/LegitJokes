@@ -8,33 +8,15 @@ const getAllCategories = function(){
 
 const getRandomJoke = function(){
     return new Promise((resolve,reject) => {
-        Categories.findAll()
-        .then((cats) => {
-            if (cats){
-                let randomCat = getRandomInt(0,cats.length - 1);
-                Jokes.findAll({
-                    where: {
-                        category: randomCat
-                    }
-                })
-                .then((jokes) => {
-                    if(jokes){
-                        let randomJoke = getRandomInt(0,jokes.length - 1);
-                        return resolve(jokes[randomJoke])
-                    } else {
-                        return resolve(false)
-                    }
-                })
-                .catch((err) => {
-                    return reject(err);
-                })
-            } else {
-                return resolve(false)
+        Jokes.findAll()
+        .then((jokes) => {
+            if(jokes){
+                let rand = getRandomInt(0,jokes.length - 1)
+                return resolve(jokes[rand])
             }
+            return resolve(false)
         })
-        .catch((err) => {
-            return reject(err);
-        })
+        .catch(err => {return reject(err)})
     })
 }
 
