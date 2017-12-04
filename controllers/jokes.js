@@ -111,7 +111,7 @@ exports.voteForJoke = function(req,res){
     let vote = req.query.vote
     let username = jwt.decode(req.header("Authorization").replace("Bearer ",""))
     if (id && vote && username){
-        queries.voteJoke(id,vote,username)
+        jokequeries.voteJoke(id,vote,username)
         .then((isSuccess) => {
             if(isSuccess){
                 res.json({

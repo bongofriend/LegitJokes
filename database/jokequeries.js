@@ -1,4 +1,4 @@
-const Jokes = require("./dbconnection").Jokes;
+const Joke = require("./dbconnection").Joke;
 const userqueries = require("../database/userqueries");
 const votequeries = require("../database/votequeries");
 const Promise = require("bluebird");
@@ -9,12 +9,12 @@ var insertJoke = function(username,content,category){
         userqueries.findUser(username)
         .then((user) => {
             if(user){
-                Jokes.create({
-                    username: username,
-                    content: content,
-                    category: category,
-                    id: 0,
-                })
+                let joke = new Joke({
+                 Content: content,
+                 Username: username,
+                 Category: category   
+                });
+                joke.save()
                 .then((res) => {
                     if(res)
                         return resolve(true);
@@ -35,18 +35,14 @@ var insertJoke = function(username,content,category){
 }
 
 var getJokesByCategory = function(category,limit){
-    return Jokes.findAll({
-        where:{
-            category: category
-        }
+    return Joke.find({
+        Category: category
     })
 }
 
 var getJokeById = function(id){
-    return Jokes.findOne({
-        where: {
-            id: id
-        }
+    return Joke.findOne({
+        JokeID: id
     })
 }
 
@@ -59,15 +55,17 @@ var voteJoke = function(id,vote,username){
                .then((isSuccess) => {
                    if(isSuccess){
                    if (vote === "up"){
-                    Jokes.upsert({
-                        id: id,
-                        upvotes: result.upvotes + 1
+                    Joke.findOneAndUpdate({
+                        JokeID: id
+                    },{
+                        Upvotes: result.Upvotes + 1
                     })
                     return resolve(true) 
                    } else if (vote === "down"){
-                    Jokes.upsert({
-                        id: id,
-                        downvotes: result.downvotes + 1
+                    Joke.findOneAndUpdate({
+                        JokeID: id
+                    },{
+                        Upvotes: result.Upvotes - 1
                     })
                     return resolve(true)
                    }
