@@ -1,76 +1,23 @@
-const Sequelize = require("sequelize");
-const tables = require("./tables");
+const mongoose = require("mongoose");
 const Promise = require("bluebird");
-const hasher =  require("./hasher");
-const config = require("../config").dbconfig;
+const schemas = require("./models");
+const autoInc = require("mongoose-sequence")(mongoose);
+const dbconfig = require("../config").dbconfig;
 
-//Etablish connection to DB
-const db = new Sequelize(config.database, config.user, config.password, {
-    host: config.host,
-    port: config.port,
-    dialect: "mysql",
-    logging: false
+mongoose.Promise = Promise;
+mongoose.connect("mongodb://" + dbconfig.host + "/" + dbconfig.host,{useMongoClient:true});
+mongoose.connection.on("error",console.error.bind(console,"Connection Error:"));
+mongoose.connection.once("open",() => {
+    console.log("Connection To Database Etablished");
 });
 
-//Test conncetion
-db.authenticate()
-    .then(() => {
-        console.log("Connection to Database etablished")
-    })
-    .catch((err) => {
-        console.log("Could not Connect to Database");
-
-    });
-
-//Define used models
-const Users = db.define("Users", tables.userSchema, {
-    timestamps: false
-});
-
-const Jokes = db.define("Jokes",tables.jokeSchema,{
-    timestamps: false
-});
-
-const Votes = db.define("Votes",tables.voteSchema,{
-    timestamps: false
-});
-
-const Categories = db.define("Categories",tables.categoriesSchema,{
-    timestamps: false
-});
-
- 
-//TODO: Add hooks for before/after executing a query
-Users.beforeCreate(function(user,options){
-    return hasher.hash(user.Password)
-    .then((hash) => {
-        user.Password = hash;
-    })
-    .catch((err) => {
-        console.log(err);
-    })
-})
-
-
-Jokes.beforeCreate(function(joke,options){
-    return new Promise((resolve,reject) => {
-        Jokes.count()
-        .then(count => {
-            count += 1;
-            joke.id = count;
-            return resolve(true);
-        })
-        .catch((err) => {
-            return reject(err);
-        })
-    }) 
-})
-
-Votes.sync();
+schemas.jokeSchema.plugin(autoInc,{inc_field: "JokeID"});
+schemas.categorySchema.plugin(autoInc,{inc_field: "CategoryID"});
 
 module.exports = {
-    Users: Users,
-    Jokes: Jokes,
-    Votes: Votes,
-    Categories: Categories
+    User: mongoose.model("User",schemas.userSchema),
+    Joke: mongoose.model("Joke",schemas.jokeSchema),
+    Vote: mongoose.model("Vote",schemas.voteSchema),
+    Category: mongoose.model("Category",schemas.categorySchema),
 }
+
