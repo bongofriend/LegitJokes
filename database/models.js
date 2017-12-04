@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt-nodejs");
 const moment = require("moment");
+const rounds = 10;
 
 const userSchema = mongoose.Schema({
     Username: String,
