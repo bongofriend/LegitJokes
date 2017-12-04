@@ -1,4 +1,4 @@
-const Votes = require("./dbconnection").Votes;
+const Vote = require("./dbconnection").Vote;
 const Promise = require("bluebird");
 
 var insertVote = function(username,jokeid,votetype){
@@ -7,11 +7,12 @@ var insertVote = function(username,jokeid,votetype){
         .then((isFound) => {
             if (isFound)
                 return resolve(false)
-            Votes.create({
-                username: username,
-                jokeid: jokeid,
-                votetype: votetype,
-            })
+            let vote = new Vote({
+                Username: username,
+                JokeID: jokeid,
+                VoteType: votetype
+            });
+            vote.save()
             .then((ins) => {
                 if (ins)
                     return resolve(true)
@@ -31,12 +32,10 @@ var insertVote = function(username,jokeid,votetype){
 
 var getVote = function(username,jokeid,votetype){
     return new Promise((resolve,reject) => {
-        Votes.findOne({
-            where: {
-                username: username,
-                jokeid: jokeid,
-                votetype: votetype,
-            }
+        Vote.findOne({
+            Username: username,
+            JokeID: jokeid,
+            VoteType: votetype
         })
         .then((vote) => {
             if(vote)
