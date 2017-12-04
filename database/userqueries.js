@@ -1,35 +1,31 @@
 //Wrapper functions for sql queries to make code more readable
-const Users = require("./dbconnection").Users;
+const User = require("./dbconnection").User;
 const Promise = require("bluebird");
 
+
 var findUser = function(username){
-    return Users.findOne({
-        where: {
-            UName: username
-        }
+    return User.findOne({
+        Username: username
     })
 }
 
 var insertUser = function(username,password){
     return new Promise((resolve,reject) => {
         findUser(username)
-        .then((result) => {
-            if (result)
-                return resolve(false);
-                Users.create({
-                    UName: username,
-                    Password: password
-                })
-                .then(() => {
-                    return resolve(true)
-                })
-                .catch((err) => {
-                    return reject(err);
-                })
+        .then((user) => {
+            if(user) return resolve(false);
+            let newUser = new User({
+                Username: username,
+                Password: password
+            });
+            newUser.save()
+            .then((isSuccess) => {
+                if(isSuccess) return resolve(true);
+                return resolve(false)
+            })
+            .catch((err) => {return reject(err)});
         })
-        .catch((err) => {
-            return reject(err);
-        })
+        .catch((err) => {return reject(err)});
     })
 }
 
@@ -37,29 +33,19 @@ var updateCoins = function(username,coin){
     return new Promise((resolve,reject) => {
         findUser(username)
         .then((user) => {
-            if(user){
-                let coinsNew = user.Coins;
-                if (coin === "up")
-                    coinsNew = coinsNew + 1;
-                else if(coin === "down" && user.Coins > 0) 
-                    coinsNew = coinsNew - 1;
-                    Users.upsert({
-                        UName: username,
-                        Coins: coinsNew
-                    })
-                    .then((isSuccess) => {
-                        return resolve(isSuccess)
-                    })
-                    .catch((err) => {
-                        return reject(err);
-                    })
-                } else {
-                 return resolve(false)
-            }
+            if(!user) return resolve(false);
+            let newCoins = user.Coins;
+            if (coin === "up") newCoins+=1;
+            else if(user.Coins > 0 && coin === "down") newCoins-=1;
+            else return resolve(false);
+            User.findOneAndUpdate({Username: username},{Coins: newCoins})
+            .then((isSuccess) => {
+                if(isSuccess) return resolve(true);
+                return resolve(false);
+            })
+            .catch((err) => {return reject(err)});
         })
-        .catch((err) => {
-            return reject(err); 
-        })
+        .catch((err) => {return reject(err)});
     })
 }
 

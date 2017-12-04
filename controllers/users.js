@@ -80,7 +80,7 @@ exports.authenticateUser = function(req,res){
                 hasher.compare(password,user.Password)
                 .then((isMatch) => {
                     if (isMatch){
-                        var token = jwt.sign(user.UName,jwtconfig.secret)
+                        var token = jwt.sign(user.Username,jwtconfig.secret)
                         res.json({
                             Status: "Success",
                             token: token
@@ -118,8 +118,8 @@ exports.updateCoins = function(req,res){
     let coin = req.query.type
     if (username && coin){
         queries.updateCoins(username,coin)
-        .then((isFailure) => {
-            if(!isFailure){
+        .then((isSuccess) => {
+            if(isSuccess){
                 res.json({
                     Status: "Ok",
                     Message: "Coins updated"
