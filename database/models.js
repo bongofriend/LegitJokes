@@ -4,7 +4,7 @@ const moment = require("moment");
 const rounds = 10;
 
 const userSchema = mongoose.Schema({
-    Username: String,
+    Username: {type: String, unique: true},
     Password: String,
     Coins: {type: Number, default: 0}
 });
