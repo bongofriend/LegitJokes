@@ -10,7 +10,7 @@ const getAllCategories = function(){
 const getRandomJoke = function(){
     return new Promise((resolve,reject) => {
         Joke.find()
-        .select("-_id JokeID Username Content Category Upvotes Downvotes")
+        .select("-_id JokeID Username Content Date Category Upvotes Downvotes")
         .then((jokes) => {
             if(jokes){
                 let rand = getRandomInt(0,jokes.length - 1)
