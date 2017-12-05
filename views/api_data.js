@@ -242,7 +242,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Response: ",
-          "content": "{\n Status: \"Ok\"\n token: \"UserToken\"   \n}",
+          "content": "{\n Status: \"Ok\"\n token: \"UserToken\"   \n coins: \n}",
           "type": "json"
         }
       ]
