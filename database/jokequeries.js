@@ -37,13 +37,13 @@ var insertJoke = function(username,content,category){
 var getJokesByCategory = function(category,limit){
     return Joke.find({
         Category: category
-    })
+    }).select("-_id JokeID Username Content Category Upvotes Downvotes")
 }
 
 var getJokeById = function(id){
     return Joke.findOne({
         JokeID: id
-    })
+    }).select("JokeID Username Content Category Upvotes Downvotes")
 }
 
 var voteJoke = function(id,vote,username){
