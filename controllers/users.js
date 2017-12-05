@@ -58,6 +58,7 @@ exports.postUsers = function(req, res) {
  *{
  *  Status: "Ok"
  *  token: "UserToken"   
+ *  coins: 
  *}
  */
 exports.authenticateUser = function(req,res){
@@ -83,7 +84,8 @@ exports.authenticateUser = function(req,res){
                         var token = jwt.sign(user.Username,jwtconfig.secret)
                         res.json({
                             Status: "Success",
-                            token: token
+                            token: token,
+                            coins: user.Coins
                         })
                     } else {
                         res.json({
