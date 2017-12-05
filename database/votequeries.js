@@ -4,8 +4,8 @@ const Promise = require("bluebird");
 var insertVote = function(username,jokeid,votetype){
     return new Promise((resolve,reject) => {
         getVote(username,jokeid,votetype)
-        .then((isFound) => {
-            if (isFound)
+        .then((votes) => {
+            if(votes && votes.length == 1)
                 return resolve(false)
             let vote = new Vote({
                 Username: username,
@@ -32,14 +32,13 @@ var insertVote = function(username,jokeid,votetype){
 
 var getVote = function(username,jokeid,votetype){
     return new Promise((resolve,reject) => {
-        Vote.findOne({
+        Vote.find({
             Username: username,
             JokeID: jokeid,
-            VoteType: votetype
         })
-        .then((vote) => {
-            if(vote)
-                return resolve(true)
+        .then((votes) => {
+            if(votes)
+                return resolve(votes)
             return resolve(false)
         })
         .catch((err) => {

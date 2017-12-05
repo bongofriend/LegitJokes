@@ -43,48 +43,27 @@ var getJokesByCategory = function(category,limit){
 var getJokeById = function(id){
     return Joke.findOne({
         JokeID: id
-    }).select("JokeID Username Content Category Upvotes Downvotes")
+    }).select("-_id JokeID Username Content Category Upvotes Downvotes")
 }
 
 var voteJoke = function(id,vote,username){
     return new Promise ((resolve,reject) => {
         getJokeById(id)
-        .then((result) => {
-           if (result){
-               votequeries.insertVote(username,id,vote)
-               .then((isSuccess) => {
-                   if(isSuccess){
-                   if (vote === "up"){
-                    Joke.findOneAndUpdate({
-                        JokeID: id
-                    },{
-                        Upvotes: result.Upvotes + 1
-                    })
-                    return resolve(true) 
-                   } else if (vote === "down"){
-                    Joke.findOneAndUpdate({
-                        JokeID: id
-                    },{
-                        Upvotes: result.Upvotes - 1
-                    })
-                    return resolve(true)
-                   }
-                }
-                   else
-                        return resolve(false)
-               })
-               .catch((err) => {
-                   console.log(err)
-                   return reject(err)
-               })
-           } else {
-               return resolve(false)
-           }
+        .then((joke) => {
+            if(!joke) return resolve(false);
+            if(vote === "up"){
+                Joke.findOneAndUpdate({JokeID: id},{Upvotes: joke.Upvotes + 1})
+                .catch((err) => {return reject(err)});
+            }    
+            else if(vote === "down") {
+                Joke.findOneAndUpdate({JokeID: id},{Downvotes: joke.Downvotes + 1})
+                .catch((err) => {return reject(err)});                
+            }
+            votequeries.insertVote(username,id,vote)
+            .then((isSuccess) => {return resolve(isSuccess)})
+            .catch((err) => {return reject(err)})
         })
-        .catch((err) => {
-            console.log(err)
-            return reject(err)
-        })
+    .catch((err) => {return reject(err)});
     })
 }
 
@@ -94,4 +73,3 @@ module.exports = {
     voteJoke: voteJoke,
     insertJoke: insertJoke
 }
-
