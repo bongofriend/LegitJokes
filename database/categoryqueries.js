@@ -1,14 +1,16 @@
-const Categories = require("./dbconnection").Categories;
-const Jokes = require("./dbconnection").Jokes;
+const Category = require("./dbconnection").Category
+const Joke = require("./dbconnection").Joke;
 const Promise = require("bluebird")
 
 const getAllCategories = function(){
-    return Categories.findAll()
+    return Category.find()
+    .select("CategoryID Category")
 }
 
 const getRandomJoke = function(){
     return new Promise((resolve,reject) => {
-        Jokes.findAll()
+        Joke.find()
+        .select("-_id JokeID Username Content Category Upvotes Downvotes")
         .then((jokes) => {
             if(jokes){
                 let rand = getRandomInt(0,jokes.length - 1)
