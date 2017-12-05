@@ -4,7 +4,7 @@ const Promise = require("bluebird")
 
 const getAllCategories = function(){
     return Category.find()
-    .select("CategoryID Category")
+    .select("-_id CategoryID Category")
 }
 
 const getRandomJoke = function(){
