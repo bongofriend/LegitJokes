@@ -5,12 +5,14 @@ const jokeController = require("./controllers/jokes");
 const authController = require("./controllers/auth");
 const categoryController = require("./controllers/category");
 const passport = require("passport");
+const cors = require("cors");
 
 const app = express();
 const router = express.Router();
 const port = process.env.PORT || 3000;
 
 //Set up middleware
+app.use(cors())
 app.use(express.static(__dirname + "/views"))
 app.use(passport.initialize());
 app.use(bodyParser.urlencoded({ extended: false }));
