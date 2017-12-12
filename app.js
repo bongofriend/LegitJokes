@@ -28,9 +28,6 @@ router.route("/joke/random").get(jokeController.getRandomJoke);
 router.route("/categories").get(categoryController.getCategories);
 router.route("/vote").get(passport.authenticate("jwt-strat",{session: false}),jokeController.voteForJoke);
 app.use("/api",router);
-app.use("/",(req,res) => {
-	res.render(__dirname + "/api-docs-generator/index")
-})
 
 
 //Listen on defined port
