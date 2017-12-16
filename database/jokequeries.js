@@ -51,16 +51,21 @@ var voteJoke = function(id,vote,username){
         getJokeById(id)
         .then((joke) => {
             if(!joke) return resolve(false);
-            if(vote === "up"){
-                Joke.findOneAndUpdate({JokeID: id},{Upvotes: joke.Upvotes + 1})
-                .catch((err) => {return reject(err)});
-            }    
-            else if(vote === "down") {
-                Joke.findOneAndUpdate({JokeID: id},{Downvotes: joke.Downvotes + 1})
-                .catch((err) => {return reject(err)});                
-            }
             votequeries.insertVote(username,id,vote)
-            .then((isSuccess) => {return resolve(isSuccess)})
+            .then((isSuccess) => {
+                if(isSuccess){
+                if(vote === "up"){
+                    Joke.findOneAndUpdate({JokeID: id},{Upvotes: joke.Upvotes + 1})
+                    .catch((err) => {return reject(err)});
+                }    
+                else if(vote === "down") {
+                    Joke.findOneAndUpdate({JokeID: id},{Downvotes: joke.Downvotes + 1})
+                    .catch((err) => {return reject(err)});                
+                }
+                return resolve(true)
+                } return resolve(false)
+                
+            })
             .catch((err) => {return reject(err)})
         })
     .catch((err) => {return reject(err)});
