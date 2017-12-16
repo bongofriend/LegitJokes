@@ -5,8 +5,9 @@ var insertVote = function(username,jokeid,votetype){
     return new Promise((resolve,reject) => {
         getVote(username,jokeid,votetype)
         .then((votes) => {
-            if(votes && votes.length == 1)
+            if(votes && votes.length == 1){
                 return resolve(false)
+            } else {
             let vote = new Vote({
                 Username: username,
                 JokeID: jokeid,
@@ -22,7 +23,7 @@ var insertVote = function(username,jokeid,votetype){
                 console.log(err)
                 return reject(err)
             })
-        })
+        }})
         .catch((err) => {
             console.log(err)
             return reject(err)
