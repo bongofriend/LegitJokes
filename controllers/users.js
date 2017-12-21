@@ -69,7 +69,7 @@ exports.authenticateUser = function(req,res){
                     if (isMatch){
                         var token = jwt.sign(user.Username,jwtconfig.secret)
                         res.json({
-                            Status: "Success",
+                            Status: "Ok",
                             token: token,
                             coins: user.Coins
                         })
