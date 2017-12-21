@@ -2,6 +2,7 @@ const jokequeries = require("../database/jokequeries");
 const categoryqueries = require("../database/categoryqueries");
 const jwt = require("jsonwebtoken");
 const Promise = require("bluebird");
+const errorms = require("./errorsms");
 
 /**
  * @api {post} /joke/submit Submit a Joke with a Category
@@ -27,25 +28,16 @@ exports.postJoke = function(req,res){
                     Message: "Joke saved"
                 })
             } else {
-                res.json({
-                    Status: "Error",
-                    Message: "Could not find Username"
-                })
+                res.json(errorms.userNotFound)
             }
         })
         .catch((err) => {
             console.log(err);
-            res.json({
-                Status: "Error",
-                Message: "An Error Occured"
-            })
+            res.json(errorms.errorGeneral)
         })
     }
     else {
-        res.json({
-            Status: "Error",
-            Message: "Missing fields"
-        })
+        res.json(errorms.missingFields)
     }
 }
 
@@ -82,16 +74,10 @@ exports.getJoke = function(req,res){
             })
         })
         .catch((err) => {
-            res.json({
-                Status: "Error",
-                Message: "Could fetch jokes"
-            })
+            res.json(errorms.jokeNotGet)
         })
     } else {
-        res.json({
-            Status: "Error",
-            Message: "Catergory field is missing"
-        })
+        res.json(errorms.errorGeneral)
     }
 }
 
@@ -119,24 +105,15 @@ exports.voteForJoke = function(req,res){
                     Message: "Vote saved"
                 })
             } else {
-                res.json({
-                    Status: "Error",
-                    Message: "Could not save vote"
-                })
+                res.json(errorms.voteNotSaved)
             }
         })
         .catch((err) => {
             console.log(err);
-            res.json({
-                Status: "Error",
-                Message: "An Error Occured"
-            })
+            res.json(errorms.errorGeneral)
         })
     } else {
-        res.json({
-            Status: "Error",
-            Message: "Missing fields"
-        })
+        res.json(errorms.missingFields)
     }
 }
 
@@ -154,17 +131,11 @@ exports.getRandomJoke = function(req,res){
                 data : joke
             })
         } else {
-            res.json({
-                Status: "Error",
-                Message: "Could not get Joke"
-            })
+            res.json(errorms.jokeNotGet)
         }
     })
     .catch((err) => {
         console.log(err);
-        res.json({
-            Status: "Error",
-            Message: "An Error Occured"
-        })
+        res.json(errorms.errorGeneral)
     })
 }

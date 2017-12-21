@@ -1,4 +1,5 @@
 const queries = require("../database/categoryqueries");
+const errorms = require("./errorsms")
 /**
  * @api {get} /categories Get All Available Categories
  * @apiGroup Category 
@@ -12,17 +13,11 @@ exports.getCategories = function(req,res){
                 data: cats
             })
         } else {
-            res.json({
-                Status: "Error",
-                Message: "Could not fetch Categories"
-            })
+            res.json(errorms.categoryError)
         }
     })
     .catch((err) => {
         console.log(err);
-        res.json({
-            Status: "Error",
-            Message: "An Error Occured"
-        })
+        res.json(errorms.errorGeneral)
     })
 }

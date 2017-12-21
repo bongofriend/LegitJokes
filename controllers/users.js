@@ -1,6 +1,7 @@
 const queries = require("../database/userqueries")
 const jwt = require("jsonwebtoken");
 const hasher = require("../database/hasher");
+const errorms = require("./errorsms")
 const jwtconfig = require("../config").jwtconfig;
 
 
@@ -28,24 +29,15 @@ exports.postUsers = function(req, res) {
                     Message: "Registering was successful"
                 })
             } else {
-                res.json({
-                    Status: "Error",
-                    Message: "Username already in use"
-                }) 
+                res.json(errorms.usernameTaken) 
             } 
         })
         .catch((err) => {
             console.log(err);
-            res.json({
-                Status: "Error",
-                Message: "An Error Occured"
-            })
+            res.json(errorms.errorGeneral)
         })
     } else {
-        res.json({
-            Status: "Error",
-            Message: "Username/Password is missing"
-        })
+        res.json(errorms.missingFields)
     }
 }
 
@@ -65,18 +57,12 @@ exports.authenticateUser = function(req,res){
     let username = req.body.username;
     let password = req.body.password
     if (!username || !password){
-        res.json({
-            Status: "Error",
-            Message: "Username/Password is missing"
-        })
+        res.json(errorms.missingFields)
     } else {
         queries.findUser(username)
         .then((user) => {
             if (!user) {
-                res.json({
-                    Status: "Error",
-                    Message: "Could not find User"
-                })
+                res.json(errorms.userNotFound)
             } else {
                 hasher.compare(password,user.Password)
                 .then((isMatch) => {
@@ -88,20 +74,14 @@ exports.authenticateUser = function(req,res){
                             coins: user.Coins
                         })
                     } else {
-                        res.json({
-                            Status: "Error",
-                            Message: "Check your password"
-                        })
+                        res.json(errorms.checkPassword)
                     }
                 })
             }
         })
         .catch((err) => {
             console.log(err);
-            res.json({
-                Status: "Error",
-                Message: "An Error Occured"
-            })
+            res.json(errorms.errorGeneral)
         })
     }
 }
@@ -127,24 +107,15 @@ exports.updateCoins = function(req,res){
                     Message: "Coins updated"
                 })
             } else {
-                res.json({
-                    Status: "Error",
-                    Message: "Could not Update Coins"
-                })
+                res.json(errorms.coinsNotUpdated)
             }
         })
         .catch((err) => {
             console.log(err)
-            res.json({
-                Status: "Error",
-                Message: "An Error Occured"
-            })
+            res.json(errorms.errorGeneral)
         })
     } else {
-        res.json({
-            Status: "Error",
-            Message: "Missing Query Parameter"
-        })
+        res.json(errorms.missingFields)
     }
 }
 
