@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+
+	<link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"> 
+	<link rel="stylesheet" href="styles/home.css" type="text/css">
+	<link rel="stylesheet" href="res/font-awesome/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://unpkg.com/vue" ></script>
+	<script src="https://unpkg.com/vue-resource" ></script>
+	<script src="https://unpkg.com/vue-router/dist/vue-router.js" ></script>
+	
+	<title>LEGIT</title>
+</head>
+
+
+<body>
+	<script src="home.js" defer></script>
+	<div class="page">
+
+		<div class="navigation">
+			<ul id="navbar">
+				<li class="navpoint"><span class="navitem_logo" v-on:click="show_us">LEGIT</span></li>
+
+				<li class="navpoint" v-if="rechteSeite" v-on:click="switching"><span class="navitem_create">Witz schreiben</span></li>
+
+				<li class="navpoint" v-else v-on:click="back_switching"><span class="navitem_create">Automat anzeigen</span></li>
+
+				<li v-for="category in categories" class="navpoint"><span class="navitem" v-on:click="wechsel(category.CategoryID)">{{ category.Category }}</span></li>
+				<li class="navpoint" id="username"><a href="index.html" class="logout_button">Logout</a></li>			<!--Menuleiste oben-->
+
+			</ul>
+		</div>
+
+		<div id="rest">
+
+			<div class="witzspalte">
+				<div v-if="active == true">
+					<img src="res/media/wir.png" alt="Picture of us" class="Legit_team">
+					
+				</div>
+				<div v-else>
+					<video v-if="no_connection_vid" class="house" src="res/media/house.mp4" autoplay></video>
+
+					<div class="witze-div" v-for="witz in witze">
+						<table class="joke-tabelle">
+
+							<tr>
+								<td class="smiley"><i  class="fa fa-smile-o" aria-hidden="ture" v-on:click="upvote(witz)"></i></td> <!--Hier mit id des witze die bewertung durchführen-->
+								<td>{{ witz.Content }}</td>
+								<td class="smiley"><i class="fa fa-meh-o"  aria-hidden="true" v-on:click="downvote(witz)"></i></td>
+							</tr>
+							<tr>
+								<td>{{ witz.Upvotes }}</td>
+								<td>Witz von <span class="button1">{{ witz.Username }}</span> am {{ witz.Date }}</td>
+								<td>{{ witz.Downvotes }}</td>
+							</tr>				
+
+						</table>		<!--Witze tabelle-->
+					</div> 			 <!--WitzeDiv-->
+				</div>
+				<audio ref="coin_sound" src="res/media/coin_sound.mp3"></audio>
+				<audio ref="fail_sound" src="res/media/fail_sound.mp3"></audio>
+			</div>			<!--linke hälfte mit witzen-->
+
+			<div class="rechts">
+				<div class="container" v-if="rechteSeite">
+
+					<div v-if="(zeit == 0 && coins > 0)" class="hebel" v-on:click="zufall"></div>
+					<img v-if="(zeit == 0 && coins > 0)" class="automat" src="res/media/Automat_oben.jpg" alt="Automat hebel oben">
+					<img v-if="zeit > 0" class="automat" src="res/media/automat.gif" alt="Automat in Bewegung"> 	<!--Automat mit Coins-->
+					<img v-if="(zeit == 0 && coins == 0)" class="automat" src="res/media/Automat_leer.jpg" alt="Automat ohne Geld"> <!--Automat ohne Coins-->
+					<div v-if="zeit == 0" class="random_joke_feld">
+						{{ random_witz }}
+					</div>					<!-- Random witz im Automat-->
+
+					<div class="credit">{{ coins }}</div>
+
+
+				</div>		<!--Automat-->
+
+				<div class="Witz_schreiben" v-else>
+					<textarea spellcheck="true" placeholder="Hier Witz eingeben" value="" v-model="joke">
+					</textarea>
+
+					<button class="joke_submit_button" v-on:click="submit_joke">In <span class="button1">LEGIT</span> posten?</button>
+
+					<select class="select_categroy" v-model="selected_category">
+						<option value="Kategorie auswählen" selected disabled>Kategorie auswählen</option>
+						<option v-for="category in categories" v-bind:value="category.CategoryID">{{ category.Category }}</option>
+					</select>
+
+					<br>
+
+					<img src="res/media/select_category.png" v-bind:class="{ category_arrow: active }">
+
+					<div class="letters">
+
+						<img src="res/media/letter_opened.jpg" class="letter" v-if="!(letter_movement)" alt="letter open">
+						<transition  name="letter_transition"
+						enter-active-class="animated tada"
+						leave-active-class="animated bounceOutRight" appear>
+						<img src="res/media/letter_closed.jpg" class="letter" v-if="letter_movement" alt="letter closed">
+					</transition>
+
+
+				</div>
+
+			</div>
+
+		</div>			<!--rechte hälfte für Random witze-->
+
+	</div>			<!--Rest unter der Menuleiste-->
+</div>
+</body>

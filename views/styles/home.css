@@ -1,0 +1,300 @@
+ a:hover { cursor:url('aero-middle-finger.cur'), pointer; }		/*mittelfinger*/
+
+
+ body{							/*hintergrund und keine horizontale scrollbar*/
+ 	background-color: black;
+ 	overflow-x: hidden;		
+ }
+
+
+li{
+	color:white;
+}
+
+.logo{							/*LEGIT Logo*/
+  font-family: 'Orbitron', sans-serif;
+  font-size: 40px;
+  text-decoration: none;
+  color: white;
+  padding: 14px 54px;
+}
+
+#navbar{						
+	list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+
+.navpoint{
+	float: left;
+}
+
+
+.navitem_logo{
+	float: left;
+	color: white;
+	display: block;
+	text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 40px;
+    text-decoration: none;
+    cursor: url('aero-middle-finger.cur'), pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.navitem_create{
+	float: left;
+	color: white;
+	text-decoration: none;
+	display: block;
+	text-align: center;
+	width: 150px;
+    padding: 14px 16px 14px 16px;
+    font-family: 'PT Sans', sans-serif;
+}
+
+.navitem{
+	float: left;
+	color: white;
+	text-decoration: none;
+	display: block;
+	text-align: center;
+    padding: 14px 16px;
+    font-family: 'PT Sans', sans-serif;
+
+}
+
+.navitem:hover, .navitem_create:hover{
+	background-color: #696969;
+	cursor: url('aero-middle-finger.cur'), pointer;
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#username{				/*der name rechts oben*/
+	color: white;
+	text-align: center;
+    padding: 14px 16px;
+    font-family: 'PT Sans', sans-serif;
+    cursor: default;
+    float:right;
+}
+
+
+#rest{
+	padding-top: 70px;
+}
+
+.Legit_team{
+	height: 100%;
+	width: 100%;
+}
+
+
+
+
+
+
+.smiley{					/*Bewertungs-smileys neben den witzen*/
+	font-size: 40px;
+	color: white;
+	text-align: center;
+	transition: all .2s ease-in-out;
+	cursor: url('aero-middle-finger.cur'), pointer;
+}
+
+.smiley:hover { transform: scale(1.7); }			/*vergrößern der Smileys beim hovern*/
+
+
+
+.witzspalte{			/*linke Hälfte für witze*/
+	float: left; 
+	width: 50%;
+}
+
+.witze-div{
+	padding: 20px;
+	margin-bottom: 30px;
+}
+
+
+table{				/*tabelle für witze und bewertungen*/
+	color: white;
+	border: none;
+	padding-left: 30px;
+	width: 90%;
+}
+
+td{					
+	padding: 15px;
+	font-size: 20px;
+	font-family: 'PT Sans', sans-serif;
+	text-align: center;
+  	vertical-align: middle;
+
+}
+
+
+.rechts{			/*rechte hälfte ist fix für random jokes*/
+	right: 0px;
+	position: fixed;
+	float: right; 
+	width: 50%;
+}
+
+
+.automat{					/*Spielautomat */
+	height: 100%;
+	width: 100%;
+
+}
+
+.container{
+    text-align: center;
+}
+
+.credit{ 				/*kontostand im Spielautomat*/
+	color: white;
+	font-family: 'PT Sans', sans-serif;
+	font-size: 420%;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
+
+.hebel{			/*hebel zum ziehen beim spielautomat*/
+
+	position: absolute;
+	left: 83%;
+	top: 41%;
+	height: 45px;
+	width: 45px;
+	cursor: url('aero-middle-finger.cur'), pointer;
+}
+
+.random_joke_feld{
+	position: absolute;
+	top: 39%;
+	left: 33%;
+	height: 140px;
+	width: 250px;
+	color: white;
+	font-family: 'PT Sans', sans-serif;
+	font-size: 20px;
+	word-break: normal;
+	-webkit-transform: rotateX(40deg); 
+    transform: rotateX(40deg);
+
+
+}
+
+textarea{
+	font-size: 20px;
+	color: white;
+	font-family: 'PT Sans', sans-serif;
+	background-color: black;
+	border-style: solid;
+    border-width: medium;
+	border-color: white;
+	height: 150px;
+	width: 80%;
+	overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: all 1s;
+}
+.fade-enter, .fade-leave-to {
+   opacity: 0;
+  transform: translateY(30px);
+}
+
+.logout_button{
+	border: none;
+	background: none;
+	float: left;
+	color: white;
+	text-decoration: none;
+	display: block;
+	text-align: center;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 17px;
+     cursor: url('aero-middle-finger.cur'), pointer;
+
+}
+
+.joke_submit_button {
+    background-color: white; 
+    font-family: 'PT Sans', sans-serif;
+    border: none;
+    padding: 17px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 17px;
+    margin: 4px 0px;
+    cursor: url('aero-middle-finger.cur'), pointer;
+} 
+
+.button1{
+	 font-family: 'Orbitron', sans-serif;
+}
+
+.select_categroy {
+	background-color: white; 
+	 font-family: 'PT Sans', sans-serif;
+	 font-size: 17px;
+   	 margin: 4px 7px;
+     padding: 15px 32px;
+     cursor: url('aero-middle-finger.cur'), pointer;
+
+}
+
+.category_arrow {
+	animation: shake 0.5s; 
+    animation-iteration-count: infinite; 
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.letter{
+	padding: 90px 200px;
+	position: absolute;
+}
+
+.house{
+	height: 100%;
+	width: 100%;
+}

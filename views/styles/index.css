@@ -1,0 +1,330 @@
+*{
+
+	margin: 0;
+	padding: 0;
+
+}
+
+body{
+
+	background-color: black;
+	overflow: hidden;
+
+}
+
+/*ANFANGS-ANIMATION CSS*/
+
+.FLYIN{
+
+	list-style: none;
+	position: absolute;
+	left: 50%;
+	top:50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+
+.FLYIN li{
+
+	display: inline-block;
+	color:white;
+	margin-right: 50px;
+	font-family: 'Orbitron', sans-serif;
+	font-size: 3em;
+	opacity: 1;
+	transition: all 2.5s ease;
+}
+
+.FLYIN li:last-Child{
+	margin-right: 0;
+}
+
+.Hidden li{
+	opacity: 0;
+}
+
+.Loginbutton{
+	cursor: pointer;	
+	background-color: black;
+	border: 3px solid white;
+	padding: 3px;
+	font-family: 'Orbitron', sans-serif;
+	color:white;
+	position: absolute;
+	top: 60%;
+	left:49%;
+	opacity: 1;
+}
+
+.hiddenButton{
+
+	opacity: 0;
+}
+
+.menubutton-enter-active, .menubutton-leave-active {
+  transition: opacity 0.5s ease-out
+}
+.menubutton-enter, .menubutton-leave-to {
+  opacity: 0
+}
+
+
+.Hidden li:nth-child(1) {
+
+	transform: translateX(-200px) translateY(-200px);
+
+}
+
+.Hidden li:nth-child(2) {
+
+	transform: translateX(20px) translateY(-200px);
+	
+}
+.Hidden li:nth-child(3) {
+
+	transform: translateX(-150px) translateY(-80px);
+	
+}
+.Hidden li:nth-child(4) {
+
+	transform: translateX(10px) translateY(-200px);
+	
+}
+.Hidden li:nth-child(5) {
+
+	transform: translateX(-300px) translateY(200px);
+	
+}
+
+
+/*  AB HIER LOGIN-CSS */  
+
+.form{
+
+	border: 3px solid white;
+	border-radius: 25px;
+	width: 350px;
+	height: 350px;
+	margin: 0 auto;
+	margin-top: 150px;
+	text-align: center;
+	visibility: hidden;
+
+}
+
+.logininput{
+
+	height: 30px;
+	width: 200px;
+	font-size: 18px;
+	margin-bottom: 20px;
+	padding-left: 20px;
+	font-family: 'Orbitron', sans-serif;
+}
+
+i[class= "fa fa-user-circle fa fa-car fa-5x"]{
+
+	color:white;
+	margin-bottom: 40px;
+
+
+}
+
+
+#toRegisterForm{
+
+	font-family: 'Orbitron', sans-serif;
+	font-size:x-small;
+	color:white;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.inputform::before{
+
+	position: absolute;
+	font-family: "FontAwesome";
+	content:"\f007";
+	font-size: 20px;
+	padding-top: 6px;
+	padding-left: 5px;
+}
+
+#lastinput::before {
+
+	content:"\f023";
+
+}
+
+#loginsubmit{
+	cursor: pointer;	
+	background-color: black;
+	border: 3px solid white;
+	border-radius: 3px;
+	padding: 5px;
+	font-family: 'Orbitron', sans-serif;
+	color:white;
+	opacity: 1;
+	margin-bottom:20px;
+}
+
+
+/*ERROR-DIVS*/
+
+
+#UserErrordiv{
+
+	
+	background:black;
+	width: 400px;
+	height: 50px;
+	position: absolute;
+	top:30%;
+	right:10%;
+
+
+}
+
+.ErrorMessage{
+	position:absolute;
+	text-align: center;
+	color:white;
+	font-family: 'Orbitron', sans-serif;
+}
+
+.ErrorMessageLogin{
+
+left:25px;
+
+}
+
+#Khaledgif{
+	position: absolute;
+	left: 15px;
+
+}
+
+.Errordiv-enter-active, .Errordiv-leave-active{
+  transition: opacity 2s ease-out;
+}
+
+.Errordiv-enter, .Errordiv-leave-to{
+
+	opacity: 0;
+}
+
+/* AB HIER REGISTER-FORM CSS */
+
+#Registration-Heading{
+
+	color:white;
+	font-family: 'Orbitron', sans-serif;
+	font-size: x-large;
+	font-weight:bold;
+	text-decoration: underline;
+	margin-top: 23px;
+	margin-bottom: 50px;
+}
+
+#register-div{
+
+	border: 3px solid white;
+	border-radius: 25px;
+	width: 350px;
+	height: 350px;
+	margin: 0 auto;
+	margin-top: 150px;
+	text-align: center;
+	opacity: 0;
+
+}
+
+.registerinput{
+
+	height: 30px;
+	width: 200px;
+	font-size: 18px;
+	margin-bottom: 30px;
+	padding-left: 20px;
+	font-family: 'Orbitron', sans-serif;
+}
+
+i[class="fa fa-arrow-circle-left fa-2x"]{
+	color:white;
+	cursor: pointer;
+	
+}
+#backToLogin:hover{
+
+transform: scale(1.2);
+
+}
+
+.register-inputform::before{
+
+	position: absolute;
+	font-family: "FontAwesome";
+	content:"\f007";
+	font-size: 20px;
+	padding-top: 6px;
+	padding-left: 5px;
+}
+
+#lastinput-register::before {
+
+	content:"\f023";
+
+}
+
+#register-submit{
+	cursor: pointer;	
+	background-color: black;
+	border: 3px solid white;
+	border-radius: 3px;
+	padding: 5px;
+	font-family: 'Orbitron', sans-serif;
+	color:white;
+	opacity: 1;
+	margin-bottom:20px;
+}
+
+
+#registerSuccess{
+
+position: fixed;
+top:50%;
+right:50%;
+margin-top: -100px;
+margin-right: -100px;
+
+}
+
+/*Nervige ERROR-AUSGABE*/
+
+#failDiv{
+ 
+ position:relative;
+ left:0px;
+ top: 100px;
+ font-family: 'Orbitron', sans-serif;
+ padding:40px;
+ color:white;
+
+}
+
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
