@@ -6,9 +6,7 @@ var joke_vote_link = 'https://legitjokes.herokuapp.com/api/vote?id='; //missing:
 var change_coins_link = 'https://legitjokes.herokuapp.com/api/user/coins?type='; //missing: up or down
 
 
-
 //Vue für die linke Spalte in der die Witze stehen
-
 
 
 var lustig = new Vue({
@@ -24,12 +22,11 @@ var lustig = new Vue({
 
 		//Speichert Token vom Benutzer
 
-		console.log(localStorage.getItem("token"))
-		console.log(localStorage.getItem("coins"))
 		this.$data.token = "Bearer "
 
-				this.$data.token += localStorage.getItem("token"); //hier Key von Amir einfügen!!
-				//this.$data.token += "eyJhbGciOiJIUzI1NiJ9.TGl0X2JveTY5.EM2R45WtYCgJrIe0zcNPg9yStoEsSwEHudxWA9NlaB8"; //noch meiner
+				//get Token from login
+				this.$data.token += localStorage.getItem("token"); 
+				
 
 			},
 
@@ -148,10 +145,7 @@ var category = new Vue({
 			automat.$data.categories = resp.body.data;
 		})
 		.catch(function(err) {
-			this.$data.categories[0].Category = automat.$data.categories[0].Category = "Da ist wohl";
-			this.$data.categories[1].Category = automat.$data.categories[1].Category = "wer über das";
-			this.$data.categories[2].Category = automat.$data.categories[2].Category = "WLAN-Kabel";
-			this.$data.categories[3].Category = automat.$data.categories[3].Category = "gestolpert";
+			
 		})		
 	},
 	methods: {
@@ -220,7 +214,7 @@ var automat = new Vue({
 		random_witz: "Schau in einen Spiegel, da kannst du auch lachen",
 		rechteSeite: true,
 		categories: [],
-		joke: "",
+		joke: "", //Witz den man selber eintippt
 		selected_category: "Kategorie auswählen",
 		active: false,
 		letter_movement: false,
@@ -229,8 +223,8 @@ var automat = new Vue({
 
 	mounted: function(){
 
-		//this.$data.coins =  3;
-		localStorage.getItem("coins"); //Coins von Amir
+		
+		localStorage.getItem("coins"); //Coins vom User
 
 	},
 
@@ -308,7 +302,10 @@ var automat = new Vue({
 					}
 					)
 					.then(function(resp){
+
 						this.$data.joke = "";
+
+						//small letter
 						this.$data.letter_movement = true;
 						setTimeout(function(){
 							automat.$data.letter_movement = false;
