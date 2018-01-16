@@ -196,6 +196,11 @@ var category = new Vue({
 			})
 		}
 
+		delete(){
+			localStorage.removeItem("coins");
+			localStorage.removeItem("token");
+		}
+
 	}
 
 
@@ -212,7 +217,7 @@ var automat = new Vue({
 
 	data: {
 		zeit: 0,
-		coins: 0, //anpassen
+		coins: 0, 
 		random_witz: "Schau in einen Spiegel, da kannst du auch lachen",
 		rechteSeite: true,
 		categories: [],
