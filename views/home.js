@@ -194,7 +194,7 @@ var category = new Vue({
 				lustig.$data.witze = null;
 
 			})
-		}
+		},
 
 		delete(){
 			localStorage.removeItem("coins");
