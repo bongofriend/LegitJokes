@@ -31,7 +31,7 @@
 				<li class="navpoint" v-else v-on:click="back_switching"><span class="navitem_create">Automat anzeigen</span></li>
 
 				<li v-for="category in categories" class="navpoint"><span class="navitem" v-on:click="wechsel(category.CategoryID)">{{ category.Category }}</span></li>
-				<li class="navpoint" id="username"><a href="index.html" class="logout_button" v-on:click="delete()">Logout</a></li>			<!--Menuleiste oben-->
+				<li class="navpoint" id="username"><a href="index.html" class="logout_button" v-on:click="delete">Logout</a></li>			<!--Menuleiste oben-->
 
 			</ul>
 		</div>
