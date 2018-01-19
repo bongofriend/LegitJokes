@@ -125,7 +125,7 @@ var lustig = new Vue({
 					})
 				},	
 			},			
-		})
+		});
 
 
 //Vue für die Navigationsleiste
@@ -196,17 +196,17 @@ var category = new Vue({
 			})
 		},
 
-		delete(){
+		logout(){
 			localStorage.removeItem("coins");
 			localStorage.removeItem("token");
-		}
+		},
 
 	}
 
 
 
 
-})
+});
 
 var trial_counter = 1;
 
