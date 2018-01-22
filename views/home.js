@@ -230,7 +230,7 @@ var automat = new Vue({
 	mounted: function(){
 
 		
-		this.$data.coins = 7; //localStorage.getItem("coins"); //Coins vom User
+		this.$data.coins = localStorage.getItem("coins"); //Coins vom User
 
 	},
 
