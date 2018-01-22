@@ -342,7 +342,7 @@ function ruecksetzung_long() {
 }
 
 function ruecksetzung_short() {
-	timer = setTimeout(change_back, 900);
+	timer = setTimeout(change_back, 1000);
 }
 
 //Die Zeit wird zurück gesetz, damit der Automat sich nicht bewegt!
