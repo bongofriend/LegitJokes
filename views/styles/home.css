@@ -14,7 +14,6 @@ li{
 
 #navbar{						
 	list-style-type: none;
-	color: white;
 	background-color: black; /*jokes not visible in background*/
     margin: 0px;
     padding: 0px;
@@ -37,7 +36,7 @@ li{
 }
 
 
-li:first-child > span {  /*LEGIT Logo top right corner*/
+li:first-child > span {  /*LEGIT Logo top left corner*/
 	text-align: center;
     font-family: 'Orbitron', sans-serif;
     font-size: 30px;
@@ -50,9 +49,7 @@ li:first-child > span {  /*LEGIT Logo top right corner*/
 }
 
 .menu_switch_button{
-	width: 150px;
-    padding: 14px 16px 14px 16px;
-
+	width: 10%;
 }
 
 
@@ -68,59 +65,42 @@ li:first-child > span {  /*LEGIT Logo top right corner*/
 }
 
 
-.logout_button{
+li:last-child {       /*this and next: logout button on the upper right*/
 	right: 0px;
 	position: absolute;
 }
 
-.logout_button > a{
+li:last-child > a{
 	text-decoration: none;
 	color: white;
 }
 
 
-#rest{
-	padding-top: 10%; 
+.page div:last-child{ /*to move page away from navbar*/
+	padding-top: 5%; 
 }
 
-.Legit_team{
+.Legit_team{       /*picture of legit team*/
 	height: 100%;
 	width: 100%;
 }
 
 
 
-
-
-
-.smiley{					/*smiley's for voting*/
-	font-size: 40px;
-	color: white;
-	text-align: center;
-	transition: all .2s ease-in-out;
-	cursor: url('aero-middle-finger.cur'), pointer;
-}
-
-.smiley:hover { transform: scale(1.7); }			/*vergrößern der Smileys beim hovern*/
-
-
-
-.witzspalte{			/*linke Hälfte für witze*/
+.witzspalte{			/*left side of page*/
 	float: left; 
 	width: 50%;
 }
 
 .witze-div{
-	padding: 20px;
-	margin-bottom: 30px;
+	margin-bottom: 7%;
 }
 
-
 table{				/*tabelle für witze und bewertungen*/
-	color: white;
 	border: none;
-	padding-left: 30px;
-	width: 90%;
+	padding-left: 5%;
+	width: 100%;
+	color: white;
 }
 
 td{					
@@ -133,7 +113,24 @@ td{
 }
 
 
-.rechts{			/*rechte hälfte ist fix für random jokes*/
+.table_smileys td:first-child, .table_smileys td:last-child {		/*smiley's for voting*/
+	font-size: 40px;
+	text-align: center;
+	transition: all .2s ease-in-out;
+	cursor: url('aero-middle-finger.cur'), pointer;
+}
+
+.smiley:hover { transform: scale(1.7); }			/*change size of smileys*/
+
+
+
+
+
+
+
+
+
+.rechts{			/*right side of page*/
 	right: 0px;
 	position: fixed;
 	float: right; 

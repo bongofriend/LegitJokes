@@ -28,18 +28,18 @@
 
 				<li><span v-on:click="show_us">LEGIT</span></li>
 
-				<li  v-if="rechteSeite" v-on:click="switching"><span class="menu_switch_button">Witz schreiben</span></li>
+				<li  v-if="rechteSeite" v-on:click="switching" class="menu_switch_button"><span>Witz schreiben</span></li>
 
-				<li  v-else v-on:click="back_switching"><span class="menu_switch_button">Automat anzeigen</span></li>
+				<li  v-else v-on:click="back_switching" class="menu_switch_button"><span>Automat anzeigen</span></li>
 
 				<li v-for="category in categories"><span class="navitem" v-on:click="wechsel(category.CategoryID)">{{ category.Category }}</span></li>
 
-				<li class="logout_button"><a href="index.html" v-on:click="logout">Logout</a></li>			<!--Menuleiste oben-->
+				<li><a href="index.html" v-on:click="logout">Logout</a></li>			<!--Menuleiste oben-->
 
 			</ul>
 		</div>
 
-		<div id="rest">
+		<div>
 
 			<div class="witzspalte">
 				<div v-if="active == true">
@@ -52,10 +52,10 @@
 					<div class="witze-div" v-for="witz in witze">
 						<table class="joke-tabelle">
 
-							<tr>
-								<td class="smiley"><i  class="fa fa-smile-o" aria-hidden="ture" v-on:click="upvote(witz)"></i></td> <!--Hier mit id des witze die bewertung durchführen-->
+							<tr class="table_smileys">
+								<td><i  class="fa fa-smile-o" v-on:click="upvote(witz)"></i></td> <!--Hier mit id des witze die bewertung durchführen-->
 								<td>{{ witz.Content }}</td>
-								<td class="smiley"><i class="fa fa-meh-o"  aria-hidden="true" v-on:click="downvote(witz)"></i></td>
+								<td><i class="fa fa-meh-o" v-on:click="downvote(witz)"></i></td>
 							</tr>
 							<tr>
 								<td>{{ witz.Upvotes }}</td>
