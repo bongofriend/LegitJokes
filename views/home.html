@@ -90,33 +90,34 @@
 					<textarea spellcheck="true" placeholder="Hier Witz eingeben" v-model="joke">
 					</textarea>
 
-					<button class="joke_submit_button" v-on:click="submit_joke">In <span class="button1">LEGIT</span> posten?</button>
+					<div class="submit_joke_div">
+						<button class="joke_submit_button" v-on:click="submit_joke">In <span>LEGIT</span> posten?</button>
 
-					<select class="select_categroy" v-model="selected_category">
-						<option value="Kategorie auswählen" selected disabled>Kategorie auswählen</option>
-						<option v-for="category in categories" v-bind:value="category.CategoryID">{{ category.Category }}</option>
-					</select>
+						<select class="select_categroy" v-model="selected_category">
+							<option value="Kategorie auswählen" selected disabled>Kategorie auswählen</option>
+							<option v-for="category in categories" v-bind:value="category.CategoryID">{{ category.Category }}</option>
+						</select>
 
-					<br>
+						<br>
 
-					<img src="res/media/select_category.png" v-bind:class="{ category_arrow: active }" alt="Kategorie auswählen">
+						<img src="res/media/select_category.png" v-bind:class="{ category_arrow: active }" alt="Kategorie auswählen">
 
-					<div class="letters">
+						<div class="letters">
 
-						<img src="res/media/letter_opened.jpg" class="letter" v-if="!(letter_movement)" alt="letter open">
-						<transition  name="letter_transition"
-						enter-active-class="animated tada"
-						leave-active-class="animated bounceOutRight" appear>
-						<img src="res/media/letter_closed.jpg" class="letter" v-if="letter_movement" alt="letter closed">
-					</transition>
+							<img src="res/media/letter_opened.jpg" class="letter" v-if="!(letter_movement)" alt="letter open">
+							<transition  name="letter_transition"
+							enter-active-class="animated tada"
+							leave-active-class="animated bounceOutRight" appear>
+							<img src="res/media/letter_closed.jpg" class="letter" v-if="letter_movement" alt="letter closed">
+						</transition>
 
+
+					</div>
 
 				</div>
 
-			</div>
+			</div>			<!--rechte hälfte für Random witze-->
 
-		</div>			<!--rechte hälfte für Random witze-->
-
-	</div>			<!--Rest unter der Menuleiste-->
-</div>
+		</div>			<!--Rest unter der Menuleiste-->
+	</div>
 </body>

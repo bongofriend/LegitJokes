@@ -116,12 +116,13 @@ td{
 .table_smileys td:first-child, .table_smileys td:last-child {		/*smiley's for voting*/
 	font-size: 40px;
 	text-align: center;
-	transition: all .2s ease-in-out;
 	cursor: url('aero-middle-finger.cur'), pointer;
 }
 
-.smiley:hover { transform: scale(1.7); }			/*change size of smileys*/
-
+i:hover { 							/*change size of smileys*/
+	transition: all .2s ease-in-out;
+	transform: scale(1.7); 
+}			
 
 
 
@@ -133,47 +134,46 @@ td{
 .rechts{			/*right side of page*/
 	right: 0px;
 	position: fixed;
-	float: right; 
 	width: 50%;
+
 }
 
 
-.automat{					/*Spielautomat */
+.container img{					/*Spielautomat */
+	margin-top: -20%;
 	height: 100%;
 	width: 100%;
 
 }
 
-.container{
-    text-align: center;
+.container div:first-child{			/*hebel zum ziehen beim spielautomat*/
+
+	position: absolute;
+	left: 84%;
+	top: 38%;
+	height: 5%;
+	width: 5%;
+	cursor: url('aero-middle-finger.cur'), pointer;
 }
 
-.credit{ 				/*kontostand im Spielautomat*/
+.container div:last-child{ 				/*kontostand im Spielautomat*/
 	color: white;
 	font-family: 'PT Sans', sans-serif;
 	font-size: 420%;
     position: absolute;
-    top: 70%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%); 
 }
 
-.hebel{			/*hebel zum ziehen beim spielautomat*/
 
-	position: absolute;
-	left: 83%;
-	top: 41%;
-	height: 45px;
-	width: 45px;
-	cursor: url('aero-middle-finger.cur'), pointer;
-}
 
-.random_joke_feld{
+.container div:not(:first-child):not(:last-child){
 	position: absolute;
-	top: 39%;
-	left: 33%;
-	height: 140px;
-	width: 250px;
+	top: 33%;
+	left: 32%;
+	height: 20%;
+	width: 36%;
 	color: white;
 	font-family: 'PT Sans', sans-serif;
 	font-size: 20px;
@@ -184,7 +184,12 @@ td{
 
 }
 
+.Witz_schreiben{
+	margin-top: -10%;
+}
+
 textarea{
+
 	font-size: 20px;
 	color: white;
 	font-family: 'PT Sans', sans-serif;
@@ -192,7 +197,7 @@ textarea{
 	border-style: solid;
     border-width: medium;
 	border-color: white;
-	height: 150px;
+	height: 100px;
 	width: 80%;
 	overflow: auto;
     outline: none;
@@ -211,32 +216,26 @@ textarea{
 
 
 
-.joke_submit_button {
-    background-color: white; 
-    font-family: 'PT Sans', sans-serif;
+button {
     border: none;
-    padding: 17px 32px;
-    text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 17px;
-    margin: 4px 0px;
-    cursor: url('aero-middle-finger.cur'), pointer;
+
 } 
 
-.button1{
+button > span{
 	 font-family: 'Orbitron', sans-serif;
 }
 
-.select_categroy {
-	background-color: white; 
-	 font-family: 'PT Sans', sans-serif;
-	 font-size: 17px;
-   	 margin: 4px 7px;
-     padding: 15px 32px;
-     cursor: url('aero-middle-finger.cur'), pointer;
-
+.submit_joke_div button,.submit_joke_div select {
+	font-size: 17px;
+	margin: 0% 1%;
+    padding: 2% 3%;
+    font-family: 'PT Sans', sans-serif;
+    cursor: url('aero-middle-finger.cur'), pointer;
+    background-color: white;
 }
+
 
 .category_arrow {
 	animation: shake 0.5s; 
@@ -257,7 +256,7 @@ textarea{
     100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
-.letter{
+.letters img{
 	padding: 90px 200px;
 	position: absolute;
 }

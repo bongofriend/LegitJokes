@@ -9,7 +9,6 @@ var change_coins_link = 'https://legitjokes.herokuapp.com/api/user/coins?type=';
 //Vue für die linke Spalte in der die Witze stehen
 
 
-//!!!!!COINS WERDEN NOCH NICHT RICHTIG GELADEN BEIM ERNEUTEN EINLOGGEN
 
 var lustig = new Vue({
 	el: ".witzspalte",
@@ -231,7 +230,7 @@ var automat = new Vue({
 	mounted: function(){
 
 		
-		this.$data.coins = localStorage.getItem("coins"); //Coins vom User
+		this.$data.coins = 7; //localStorage.getItem("coins"); //Coins vom User
 
 	},
 
