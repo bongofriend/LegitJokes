@@ -23,15 +23,18 @@
 	<div class="page">
 
 		<div class="navigation">
+
 			<ul id="navbar">
-				<li class="navpoint"><span class="navitem_logo" v-on:click="show_us">LEGIT</span></li>
 
-				<li class="navpoint" v-if="rechteSeite" v-on:click="switching"><span class="navitem_create">Witz schreiben</span></li>
+				<li><span v-on:click="show_us">LEGIT</span></li>
 
-				<li class="navpoint" v-else v-on:click="back_switching"><span class="navitem_create">Automat anzeigen</span></li>
+				<li  v-if="rechteSeite" v-on:click="switching"><span class="menu_switch_button">Witz schreiben</span></li>
 
-				<li v-for="category in categories" class="navpoint"><span class="navitem" v-on:click="wechsel(category.CategoryID)">{{ category.Category }}</span></li>
-				<li class="navpoint" id="username"><a href="index.html" class="logout_button" v-on:click="logout">Logout</a></li>			<!--Menuleiste oben-->
+				<li  v-else v-on:click="back_switching"><span class="menu_switch_button">Automat anzeigen</span></li>
+
+				<li v-for="category in categories"><span class="navitem" v-on:click="wechsel(category.CategoryID)">{{ category.Category }}</span></li>
+
+				<li class="logout_button"><a href="index.html" v-on:click="logout">Logout</a></li>			<!--Menuleiste oben-->
 
 			</ul>
 		</div>

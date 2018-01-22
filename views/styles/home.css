@@ -11,40 +11,36 @@ li{
 	color:white;
 }
 
-.logo{							/*LEGIT Logo*/
-  font-family: 'Orbitron', sans-serif;
-  font-size: 40px;
-  text-decoration: none;
-  color: white;
-  padding: 14px 54px;
-}
 
 #navbar{						
 	list-style-type: none;
-    margin: 0;
-    padding: 0;
+	color: white;
+	background-color: black; /*jokes not visible in background*/
+    margin: 0px;
+    padding: 0px;
     overflow: hidden;
-    background-color: black;
     position: fixed;
     top: 0;
     width: 100%;
 }
 
 
-.navpoint{
+#navbar li{
 	float: left;
+	
+	text-decoration: none;
+	display: block;
+	text-align: center;
+	font-family: 'PT Sans', sans-serif;
+	padding: 14px 16px;
+	cursor: url('aero-middle-finger.cur'), pointer;
 }
 
 
-.navitem_logo{
-	float: left;
-	color: white;
-	display: block;
+li:first-child > span {  /*LEGIT Logo top right corner*/
 	text-align: center;
     font-family: 'Orbitron', sans-serif;
-    font-size: 40px;
-    text-decoration: none;
-    cursor: url('aero-middle-finger.cur'), pointer;
+    font-size: 30px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -53,29 +49,14 @@ li{
     user-select: none;
 }
 
-.navitem_create{
-	float: left;
-	color: white;
-	text-decoration: none;
-	display: block;
-	text-align: center;
+.menu_switch_button{
 	width: 150px;
     padding: 14px 16px 14px 16px;
-    font-family: 'PT Sans', sans-serif;
-}
-
-.navitem{
-	float: left;
-	color: white;
-	text-decoration: none;
-	display: block;
-	text-align: center;
-    padding: 14px 16px;
-    font-family: 'PT Sans', sans-serif;
 
 }
 
-.navitem:hover, .navitem_create:hover{
+
+#navbar li:hover, .menu_switch_button:hover{
 	background-color: #696969;
 	cursor: url('aero-middle-finger.cur'), pointer;
 	-webkit-touch-callout: none;
@@ -86,18 +67,20 @@ li{
     user-select: none;
 }
 
-#username{				/*der name rechts oben*/
+
+.logout_button{
+	right: 0px;
+	position: absolute;
+}
+
+.logout_button > a{
+	text-decoration: none;
 	color: white;
-	text-align: center;
-    padding: 14px 16px;
-    font-family: 'PT Sans', sans-serif;
-    cursor: default;
-    float:right;
 }
 
 
 #rest{
-	padding-top: 70px;
+	padding-top: 10%; 
 }
 
 .Legit_team{
@@ -110,7 +93,7 @@ li{
 
 
 
-.smiley{					/*Bewertungs-smileys neben den witzen*/
+.smiley{					/*smiley's for voting*/
 	font-size: 40px;
 	color: white;
 	text-align: center;
@@ -229,19 +212,7 @@ textarea{
   transform: translateY(30px);
 }
 
-.logout_button{
-	border: none;
-	background: none;
-	float: left;
-	color: white;
-	text-decoration: none;
-	display: block;
-	text-align: center;
-    font-family: 'PT Sans', sans-serif;
-    font-size: 17px;
-     cursor: url('aero-middle-finger.cur'), pointer;
 
-}
 
 .joke_submit_button {
     background-color: white; 
