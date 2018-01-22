@@ -22,7 +22,7 @@
 	<script src="home.js" defer></script>
 	<div class="page">
 
-		<div class="navigation">
+		<div class="navigation">   <!-- navigation bar -->
 
 			<ul id="navbar">
 
@@ -42,18 +42,18 @@
 		<div>
 
 			<div class="witzspalte">
-				<div v-if="active == true">
+				<div v-if="active == true">  <!-- picture of us -->
 					<img src="res/media/wir.png" alt="Picture of us" class="Legit_team">
 					
 				</div>
 				<div v-else>
-					<video v-if="no_connection_vid" class="house" src="res/media/house.mp4" autoplay></video>
+					<video v-if="no_connection_vid" class="house" src="res/media/house.mp4" autoplay></video> <!-- no connection to the server -->
 
 					<div class="witze-div" v-for="witz in witze">
-						<table class="joke-tabelle">
+						<table class="joke-tabelle">				<!-- all jokes -->
 
 							<tr class="table_smileys">
-								<td><i  class="fa fa-smile-o" v-on:click="upvote(witz)"></i></td> <!--Hier mit id des witze die bewertung durchführen-->
+								<td><i  class="fa fa-smile-o" v-on:click="upvote(witz)"></i></td>
 								<td>{{ witz.Content }}</td>
 								<td><i class="fa fa-meh-o" v-on:click="downvote(witz)"></i></td>
 							</tr>
@@ -71,7 +71,7 @@
 			</div>			<!--linke hälfte mit witzen-->
 
 			<div class="rechts">
-				<div class="container" v-if="rechteSeite">
+				<div class="container" v-if="rechteSeite">  <!-- automat-->
 
 					<div v-if="(zeit == 0 && coins > 0)" class="hebel" v-on:click="zufall"></div>
 					<img v-if="(zeit == 0 && coins > 0)" class="automat" src="res/media/Automat_oben.jpg" alt="Automat hebel oben">
@@ -86,7 +86,7 @@
 
 				</div>		<!--Automat-->
 
-				<div class="Witz_schreiben" v-else>
+				<div class="Witz_schreiben" v-else>                  <!-- write own joke -->
 					<textarea spellcheck="true" placeholder="Hier Witz eingeben" v-model="joke">
 					</textarea>
 
@@ -116,8 +116,8 @@
 
 				</div>
 
-			</div>			<!--rechte hälfte für Random witze-->
+			</div>		
 
-		</div>			<!--Rest unter der Menuleiste-->
+		</div>			
 	</div>
 </body>

@@ -6,9 +6,6 @@ var joke_vote_link = 'https://legitjokes.herokuapp.com/api/vote?id='; //missing:
 var change_coins_link = 'https://legitjokes.herokuapp.com/api/user/coins?type='; //missing: up or down
 
 
-//Vue für die linke Spalte in der die Witze stehen
-
-
 
 var lustig = new Vue({
 	el: ".witzspalte",
