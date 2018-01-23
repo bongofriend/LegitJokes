@@ -49,6 +49,7 @@ var lustig = new Vue({
 						//Um die Anzahl der Coins für einen User zu erhöhen für die Bewertung
 
 						automat.$data.coins += 1;
+
 						this.$http.get(change_coins_link + 'up',
 						{
 							headers: {
@@ -57,6 +58,7 @@ var lustig = new Vue({
 							}
 						})
 						.then(function(resp){
+							localStorage.setItem("coins", automat.$data.coins);
 							
 						})
 						.catch(function(err){
@@ -104,6 +106,7 @@ var lustig = new Vue({
 							}
 						})
 						.then(function(resp){
+							localStorage.setItem("coins", automat.$data.coins);
 							
 						})
 						.catch(function(err){
