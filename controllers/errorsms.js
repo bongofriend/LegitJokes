@@ -1,3 +1,4 @@
+//error messages for various events
 exports.errorGeneral = {
         Status: "Error",
         Message: "An Error Occured"

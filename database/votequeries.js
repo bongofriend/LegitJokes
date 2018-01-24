@@ -1,18 +1,19 @@
-const Vote = require("./dbconnection").Vote;
-const Promise = require("bluebird");
+const Vote = require("./dbconnection").Vote 
+const Promise = require("bluebird") 
 
+//voting queries
 var insertVote = function(username,jokeid,votetype){
     return new Promise((resolve,reject) => {
         getVote(username,jokeid,votetype)
         .then((votes) => {
-            if(votes && votes.length == 1){
+            if(votes && votes.length == 1){  //only allow only one type of vote for each joke
                 return resolve(false)
             } else {
             let vote = new Vote({
                 Username: username,
                 JokeID: jokeid,
                 VoteType: votetype
-            });
+            }) 
             vote.save()
             .then((ins) => {
                 if (ins)

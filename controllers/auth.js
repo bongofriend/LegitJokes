@@ -1,10 +1,11 @@
-const passport = require("passport");
-const hasher = require("../database/hasher");
-const userqueries = require("../database/userqueries");
-const JWTStrategy = require("passport-jwt").Strategy;
-const ExtractJWT = require("passport-jwt").ExtractJwt;
-const config = require("../config").jwtconfig;
+const passport = require("passport") 
+const hasher = require("../database/hasher") 
+const userqueries = require("../database/userqueries") 
+const JWTStrategy = require("passport-jwt").Strategy 
+const ExtractJWT = require("passport-jwt").ExtractJwt 
+const config = require("../config").jwtconfig 
 
+//authentication strategy ssing JWT tokens
 const JwtStrategy = new JWTStrategy({
     jwtFromRequest: ExtractJWT.fromAuthHeaderWithScheme("Bearer"),
     secretOrKey: config.secret
@@ -16,16 +17,16 @@ const JwtStrategy = new JWTStrategy({
         return done(null,false)
     })
     .catch((err) => {
-        return done(err,false);
+        return done(err,false) 
     })
 })
 
 passport.serializeUser(function (user, done) {
-    done(null, user);
-});
+    done(null, user) 
+}) 
 
 passport.deserializeUser(function (user, done) {
-    done(null, user);
-});
+    done(null, user) 
+}) 
 
-passport.use("jwt-strat",JwtStrategy);
+passport.use("jwt-strat",JwtStrategy) 

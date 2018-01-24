@@ -1,25 +1,13 @@
 const queries = require("../database/userqueries")
-const jwt = require("jsonwebtoken");
-const hasher = require("../database/hasher");
+const jwt = require("jsonwebtoken") 
+const hasher = require("../database/hasher") 
 const errorms = require("./errorsms")
-const jwtconfig = require("../config").jwtconfig;
+const jwtconfig = require("../config").jwtconfig 
 
-
-
-//Handle requests and responses for Endpoint /api/users
-
-/**
- * @api {post} /user/register Register an Account
- * @apiName PostUser  
- * @apiGroup User
- * 
- * @apiParam {String} username Username
- * @apiParam {String} password Password
- */
+//handle user registeration
 exports.postUsers = function(req, res) {
-    let username = req.body.username;
-    let password = req.body.password;
-
+    let username = req.body.username 
+    let password = req.body.password 
     if (username && password) {
         queries.insertUser(username,password)
         .then((result) => {
@@ -33,7 +21,7 @@ exports.postUsers = function(req, res) {
             } 
         })
         .catch((err) => {
-            console.log(err);
+            console.log(err) 
             res.json(errorms.errorGeneral)
         })
     } else {
@@ -41,20 +29,9 @@ exports.postUsers = function(req, res) {
     }
 }
 
-/**
- * @api {post} user/authenticate Exchange Username and Password for a JWT
- * @apiGroup User
- * @apiParam {String} password Password of the User
- * @apiParam {String} username Username of the User
- * @apiSuccessExample {json} Response: 
- *{
- *  Status: "Ok"
- *  token: "UserToken"   
- *  coins: 
- *}
- */
+//check if username and password were found in the database and return a jwt when successful 
 exports.authenticateUser = function(req,res){
-    let username = req.body.username;
+    let username = req.body.username 
     let password = req.body.password
     if (!username || !password){
         res.json(errorms.missingFields)
@@ -80,21 +57,12 @@ exports.authenticateUser = function(req,res){
             }
         })
         .catch((err) => {
-            console.log(err);
+            console.log(err) 
             res.json(errorms.errorGeneral)
         })
     }
 }
 
-/**
- * @api {get} /user/coins Increase/Decrease Coins
- * @apiGroup User
- * @apiParam {String} type "up"/"down" for increasing/decreasing Coins by 1
- * @apiHeaderExample {json} Authorization-Example: 
- *        {
- *          "Authorization": Bearer Token
- *        }
- */
 exports.updateCoins = function(req,res){
     let username = jwt.decode(req.header("Authorization").replace("Bearer ",""))
     let coin = req.query.type

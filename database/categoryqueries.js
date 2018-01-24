@@ -1,7 +1,8 @@
 const Category = require("./dbconnection").Category
-const Joke = require("./dbconnection").Joke;
+const Joke = require("./dbconnection").Joke 
 const Promise = require("bluebird")
 
+//db queries for categories
 const getAllCategories = function(){
     return Category.find()
     .select("-_id CategoryID Category")
@@ -23,7 +24,7 @@ const getRandomJoke = function(){
 }
 
 const getRandomInt = function(min,max){
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min 
 }
 
 module.exports = {

@@ -1,9 +1,7 @@
-const queries = require("../database/categoryqueries");
+const queries = require("../database/categoryqueries") 
 const errorms = require("./errorsms")
-/**
- * @api {get} /categories Get All Available Categories
- * @apiGroup Category 
- */
+
+//fetch all available categories
 exports.getCategories = function(req,res){
     queries.getAllCategories()
     .then((cats) => {
@@ -17,7 +15,7 @@ exports.getCategories = function(req,res){
         }
     })
     .catch((err) => {
-        console.log(err);
+        console.log(err) 
         res.json(errorms.errorGeneral)
     })
 }
