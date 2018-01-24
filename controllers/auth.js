@@ -9,7 +9,6 @@ const JwtStrategy = new JWTStrategy({
     jwtFromRequest: ExtractJWT.fromAuthHeaderWithScheme("Bearer"),
     secretOrKey: config.secret
 },(payload,done) => {
-    console.log(payload)
     userqueries.findUser(payload)
     .then((user) => {
         if (user)
