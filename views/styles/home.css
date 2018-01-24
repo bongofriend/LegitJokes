@@ -107,6 +107,7 @@ table{				/*tabelle für witze und bewertungen*/
 	padding-left: 5%;
 	width: 100%;
 	color: white;
+	table-layout: fixed;
 }
 
 td{
