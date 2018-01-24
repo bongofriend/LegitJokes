@@ -141,42 +141,38 @@ var registerform = new Vue ({
     register: function(e){ 
         
        e.preventDefault();
-
-
         this.$http.post(hostreg,{username: this.username,password: this.password})
         .then(function(res){
-
             if(res.body.Status === "Ok"){
-                
                 console.log("Success");
-                token = res.body.token;  
-                coins = res.body.coins;
-                localStorage.setItem('coins', coins);
-                localStorage.setItem('token', token);
-                if(this.$data.seen = true){
+                this.$http.post(hostlog,{username:this.username,password:this.password})
+                .then(function(res){
+                    if(res.body.Status === "Ok"){
+                        token = res.body.token;  
+                        coins = res.body.coins;
+                        localStorage.setItem('coins', coins);
+                        localStorage.setItem('token', token);
+                        if(this.$data.seen = true){
+                            this.$data.seen = false; 
+                        }
+                        $("#register-div").animate({opacity: 0}, {duration: 500, queue:false});
+                            
+                    setTimeout(()=>{
+                        this.$data.success= true;},700);
 
-                  this.$data.seen = false; }
+                    setTimeout(()=>{
+                        this.$data.success= false;},3300);
 
-                  $("#register-div").animate({opacity: 0}, {duration: 500, queue:false});
-                  
-               setTimeout(()=>{
-                  this.$data.success= true;},700);
-
-               setTimeout(()=>{
-                  this.$data.success= false;},3300);
-
-               setTimeout(()=>{
-                 window.location.replace("home.html")},3500);
-
+                    setTimeout(()=>{
+                        window.location.replace("home.html")},3500);
+                    }
+                }) 
                }      
-                
-                if(res.body.Status === "Error"){
-
+                else if(res.body.Status === "Error"){
                    this.$data.seen = true;                
                    this.username = "";
                    this.password = "";
                    console.log("Error");
-
                }})          
     },
 
