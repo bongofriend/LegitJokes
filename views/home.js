@@ -288,9 +288,9 @@ var right_side = new Vue({
 				if(this.$data.joke.length <= 15 ){ //if the "joke" is too short
 					if(trial_counter == 1){
 						trial_counter += 1;
-						this.$data.joke = "Das ist kein Witz";
+						alert("Das ist kein Witz");
 					} else{
-						this.$data.joke = "IMMER NOCH KEIN WITZ!!!";
+						alert("IMMER NOCH KEIN WITZ!!!");
 					}
 
 				} else{

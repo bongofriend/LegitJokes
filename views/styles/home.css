@@ -3,9 +3,11 @@
 
  body{							/*hintergrund und keine horizontale scrollbar*/
  	background-color: black;
- 	overflow-x: hidden;		
  }
 
+::-webkit-scrollbar { 
+    display: none; 
+}
 
 li{
 	color:white;
@@ -105,9 +107,8 @@ li:last-child > a{
 table{				/*tabelle für witze und bewertungen*/
 	border: none;
 	padding-left: 5%;
-	width: 100%;
 	color: white;
-	table-layout: fixed;
+	width:100%;
 }
 
 td{
@@ -117,6 +118,10 @@ td{
 	text-align: center;
   	vertical-align: middle;
 
+}
+
+.witze_in_tabelle{
+	width:70%;
 }
 
 
