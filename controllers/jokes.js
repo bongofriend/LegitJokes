@@ -61,12 +61,8 @@ exports.postJoke = function(req,res){
  */
 exports.getJoke = function(req,res){
     let category = req.query.category;
-    let limit = req.query.limit;
     if (category){
-        if(!limit){
-            limit = 20;
-        }
-        jokequeries.getJokesByCategory(category,limit)
+        jokequeries.getJokesByCategory(category)
         .then((data) => {
             res.json({
                 Status: "Ok",

@@ -34,7 +34,7 @@ var insertJoke = function(username,content,category){
     })
 }
 
-var getJokesByCategory = function(category,limit){
+var getJokesByCategory = function(category){
     return Joke.find({
         Category: category
     }).select("-_id JokeID Username Content Date Category Upvotes Downvotes")
