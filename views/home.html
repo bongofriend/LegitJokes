@@ -73,11 +73,11 @@
 			<div class="rechts">
 				<div class="container" v-if="rechteSeite">  <!-- automat-->
 
-					<div v-if="(zeit == 0 && coins > 0)" class="hebel" v-on:click="zufall"></div>
-					<img v-if="(zeit == 0 && coins > 0)" class="automat" src="res/media/Automat_oben.jpg" alt="Automat hebel oben">
-					<img v-if="zeit > 0" class="automat" src="res/media/automat.gif" alt="Automat in Bewegung"> 	<!--Automat mit Coins-->
-					<img v-if="(zeit == 0 && coins == 0)" class="automat" src="res/media/Automat_leer.jpg" alt="Automat ohne Geld"> <!--Automat ohne Coins-->
-					<div v-if="zeit == 0" class="random_joke_feld">
+					<div v-if="(automat_not_moving == 0 && coins > 0)" class="hebel" v-on:click="zufall"></div>
+					<img v-if="(automat_not_moving == 0 && coins > 0)" class="automat" src="res/media/Automat_oben.jpg" alt="Automat hebel oben">
+					<img v-if="automat_not_moving> 0" class="automat" src="res/media/automat.gif" alt="Automat in Bewegung"> 	<!--Automat mit Coins-->
+					<img v-if="(automat_not_moving == 0 && coins == 0)" class="automat" src="res/media/Automat_leer.jpg" alt="Automat ohne Geld"> <!--Automat ohne Coins-->
+					<div v-if="automat_not_moving == 0" class="random_joke_feld">
 						{{ random_witz }}
 					</div>					<!-- Random witz im Automat-->
 

@@ -215,7 +215,7 @@ var automat = new Vue({
 	el: ".rechts",
 
 	data: {
-		zeit: 0,
+		automat_not_moving: 0,
 		coins: 0, 
 		random_witz: "Schau in einen Spiegel, da kannst du auch lachen",
 		rechteSeite: true,
@@ -242,7 +242,7 @@ var automat = new Vue({
 
 		zufall(){
 			//movement of the machine
-			this.$data.zeit = 1;
+			this.$data.automat_not_moving = 1;
 
 			if(this.$data.coins == 1){
 				ruecksetzung_short();
@@ -351,7 +351,7 @@ function ruecksetzung_short() {
 //Die Zeit wird zurück gesetz, damit der Automat sich nicht bewegt!
 
 function change_back(){
-	automat.$data.zeit = 0;
+	automat.$data.automat_not_moving = 0;
 }
 
 
