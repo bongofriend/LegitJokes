@@ -24,9 +24,8 @@ li{
 }
 
 
-#navbar li{
+#navbar li{		/*menu points in navbar*/
 	float: left;
-	
 	text-decoration: none;
 	display: block;
 	text-align: center;
@@ -76,6 +75,10 @@ li:last-child > a{
 }
 
 
+
+
+
+
 .page div:last-child{ /*to move page away from navbar*/
 	padding-top: 5%; 
 }
@@ -84,6 +87,9 @@ li:last-child > a{
 	height: 100%;
 	width: 100%;
 }
+
+
+
 
 
 
@@ -103,7 +109,7 @@ table{				/*tabelle für witze und bewertungen*/
 	color: white;
 }
 
-td{					
+td{
 	padding: 15px;
 	font-size: 20px;
 	font-family: 'PT Sans', sans-serif;
@@ -123,8 +129,6 @@ i:hover { 							/*change size of smileys*/
 	transition: all .2s ease-in-out;
 	transform: scale(1.7); 
 }			
-
-
 
 
 
@@ -185,9 +189,13 @@ i:hover { 							/*change size of smileys*/
 
 }
 
+
+
+
 .Witz_schreiben{
 	margin-top: -10%;
 }
+
 
 textarea{
 
@@ -207,6 +215,7 @@ textarea{
     box-shadow: none;
 }
 
+
 .fade-enter-active, .fade-leave-active {
   transition: all 1s;
 }
@@ -217,7 +226,7 @@ textarea{
 
 
 
-button {
+button {		/*joke submit button*/
     border: none;
     text-decoration: none;
     display: inline-block;
@@ -262,7 +271,7 @@ button > span{
 	position: absolute;
 }
 
-.house{
+.house{ 		/*no connection to the server gif*/
 	height: 100%;
 	width: 100%;
 }

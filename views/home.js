@@ -223,7 +223,7 @@ var right_side = new Vue({
 		categories: [],
 		joke: "", //Witz den man selber eintippt
 		selected_category: "Kategorie auswählen",
-		active: false,
+		select_category_shaking: false,
 		letter_movement: false,
 	},
 
@@ -280,8 +280,8 @@ var right_side = new Vue({
 		submit_joke(){
 
 			if(this.selected_category == "Kategorie auswählen"){
-				this.$data.active = true;
-				setTimeout(function(){right_side.$data.active = false; }, 500);
+				this.$data.select_category_shaking = true;
+				setTimeout(function(){right_side.$data.select_category_shaking = false; }, 500);
 
 			}
 			else {
