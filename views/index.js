@@ -46,8 +46,6 @@ login: function(e){
          console.log("Success");
          token = res.body.token;  
          coins = res.body.coins;
-         console.log("Token: " +token);
-         console.log("Coins: "+ coins);
          localStorage.setItem('coins', coins);
          localStorage.setItem('token', token);
          window.location.replace("home.html");
