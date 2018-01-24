@@ -7,6 +7,86 @@ var change_coins_link = 'https://legitjokes.herokuapp.com/api/user/coins?type=';
 
 
 
+var category = new Vue({
+	el: ".navigation",
+
+	data: {
+		categories: [], 
+		rechteSeite: true,
+	},
+
+	//Kategorien werden vom Datenbank geladen
+
+	mounted: function() {
+		this.$http.get(categries_link)
+		.then(function(resp) {
+			this.$data.categories = resp.body.data;
+			right_side.$data.categories = resp.body.data;
+		})
+		.catch(function(err) {
+			
+		})		
+	},
+	methods: {
+
+		show_us(){
+			left_side.$data.show_legit_team = true;
+		},
+
+		//Wechsel zum Feld "Witz schreiben" auf der Rechten seite beim Klick auf den Button in der Menüleiste
+
+		switching(){
+			right_side.$data.rechteSeite = false;
+			this.$data.rechteSeite = false;
+
+		},
+
+		//Wechsel zurück auf den Automaten durck Klicken auf den Button in der Menüleiste
+
+		back_switching(){
+			right_side.$data.rechteSeite = true;
+			this.$data.rechteSeite = true;
+
+
+		},
+
+		//Wechselt in die jeweilige Kategorie druch klicken auf das entsprechende Feld!
+
+		wechsel(id){
+
+
+			this.$http.get(joke_in_category_link + id )
+			.then(function(resp) {
+
+				left_side.$data.witze = resp.body.data;
+				left_side.$data.show_legit_team = false;
+				left_side.$data.no_connection_vid = false;
+
+			})
+			.catch(function(resp){
+
+				//witze entfernen und video anzeigen das man keine Verbindung hat
+				left_side.$data.no_connection_vid = true;
+				left_side.$data.show_legit_team = false;
+				left_side.$data.witze = null;
+
+			})
+		},
+
+		logout(){
+			localStorage.removeItem("coins");
+			localStorage.removeItem("token");
+		},
+
+	}
+
+
+
+
+});
+
+
+
 var left_side = new Vue({
 	el: ".witzspalte",
 	data: {
@@ -127,85 +207,6 @@ var left_side = new Vue({
 		});
 
 
-//Vue für die Navigationsleiste
-
-var category = new Vue({
-	el: ".navigation",
-
-	data: {
-		categories: [], 
-		rechteSeite: true,
-	},
-
-	//Kategorien werden vom Datenbank geladen
-
-	mounted: function() {
-		this.$http.get(categries_link)
-		.then(function(resp) {
-			this.$data.categories = resp.body.data;
-			right_side.$data.categories = resp.body.data;
-		})
-		.catch(function(err) {
-			
-		})		
-	},
-	methods: {
-
-		show_us(){
-			left_side.$data.show_legit_team = true;
-		},
-
-		//Wechsel zum Feld "Witz schreiben" auf der Rechten seite beim Klick auf den Button in der Menüleiste
-
-		switching(){
-			right_side.$data.rechteSeite = false;
-			this.$data.rechteSeite = false;
-
-		},
-
-		//Wechsel zurück auf den Automaten durck Klicken auf den Button in der Menüleiste
-
-		back_switching(){
-			right_side.$data.rechteSeite = true;
-			this.$data.rechteSeite = true;
-
-
-		},
-
-		//Wechselt in die jeweilige Kategorie druch klicken auf das entsprechende Feld!
-
-		wechsel(id){
-
-
-			this.$http.get(joke_in_category_link + id )
-			.then(function(resp) {
-
-				left_side.$data.witze = resp.body.data;
-				left_side.$data.show_legit_team = false;
-				left_side.$data.no_connection_vid = false;
-
-			})
-			.catch(function(resp){
-
-				//witze entfernen und video anzeigen das man keine Verbindung hat
-				left_side.$data.no_connection_vid = true;
-				left_side.$data.show_legit_team = false;
-				left_side.$data.witze = null;
-
-			})
-		},
-
-		logout(){
-			localStorage.removeItem("coins");
-			localStorage.removeItem("token");
-		},
-
-	}
-
-
-
-
-});
 
 var trial_counter = 1;
 
@@ -336,16 +337,16 @@ var right_side = new Vue({
 });
 
 
-var timer;
+
 
 //Der Timer für die Zeit in der der Automat seinen Hebel nach unten bewegt!
 
 function ruecksetzung_long() {
-	timer = setTimeout(change_back, 1300);
+	setTimeout(change_back, 1300);
 }
 
 function ruecksetzung_short() {
-	timer = setTimeout(change_back, 1000);
+	setTimeout(change_back, 1000);
 }
 
 //Die Zeit wird zurück gesetz, damit der Automat sich nicht bewegt!
