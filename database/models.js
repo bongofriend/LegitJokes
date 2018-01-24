@@ -8,7 +8,7 @@ const rounds = 10
 const userSchema = mongoose.Schema({
     Username: {type: String, unique: true},
     Password: String,
-    Coins: {type: Number, default: 0}
+    Coins: {type: Number, default: 3}
 }) 
 
 const jokeSchema = mongoose.Schema({
