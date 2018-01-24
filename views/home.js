@@ -7,12 +7,12 @@ var change_coins_link = 'https://legitjokes.herokuapp.com/api/user/coins?type=';
 
 
 
-var lustig = new Vue({
+var left_side = new Vue({
 	el: ".witzspalte",
 	data: {
 		witze: [],
 		token: null,
-		active: true,
+		show_legit_team: true,
 		no_connection_vid: false,
 	},
 
@@ -48,7 +48,7 @@ var lustig = new Vue({
 
 						//Um die Anzahl der Coins für einen User zu erhöhen für die Bewertung
 
-						automat.$data.coins += 1;
+							right_side.$data.coins += 1;
 
 						this.$http.get(change_coins_link + 'up',
 						{
@@ -58,7 +58,7 @@ var lustig = new Vue({
 							}
 						})
 						.then(function(resp){
-							localStorage.setItem("coins", automat.$data.coins);
+							localStorage.setItem("coins", right_side.$data.coins);
 							
 						})
 						.catch(function(err){
@@ -97,7 +97,7 @@ var lustig = new Vue({
 
 						//Um die Anzahl der Coins für einen User zu erhöhen für die Bewertung
 
-						automat.$data.coins += 1;
+						right_side.$data.coins += 1;
 						this.$http.get(change_coins_link + 'up',
 						{
 							headers: {
@@ -106,7 +106,7 @@ var lustig = new Vue({
 							}
 						})
 						.then(function(resp){
-							localStorage.setItem("coins", automat.$data.coins);
+							localStorage.setItem("coins", right_side.$data.coins);
 							
 						})
 						.catch(function(err){
@@ -143,7 +143,7 @@ var category = new Vue({
 		this.$http.get(categries_link)
 		.then(function(resp) {
 			this.$data.categories = resp.body.data;
-			automat.$data.categories = resp.body.data;
+			right_side.$data.categories = resp.body.data;
 		})
 		.catch(function(err) {
 			
@@ -152,13 +152,13 @@ var category = new Vue({
 	methods: {
 
 		show_us(){
-			lustig.$data.active = true;
+			left_side.$data.show_legit_team = true;
 		},
 
 		//Wechsel zum Feld "Witz schreiben" auf der Rechten seite beim Klick auf den Button in der Menüleiste
 
 		switching(){
-			automat.$data.rechteSeite = false;
+			right_side.$data.rechteSeite = false;
 			this.$data.rechteSeite = false;
 
 		},
@@ -166,7 +166,7 @@ var category = new Vue({
 		//Wechsel zurück auf den Automaten durck Klicken auf den Button in der Menüleiste
 
 		back_switching(){
-			automat.$data.rechteSeite = true;
+			right_side.$data.rechteSeite = true;
 			this.$data.rechteSeite = true;
 
 
@@ -180,17 +180,17 @@ var category = new Vue({
 			this.$http.get(joke_in_category_link + id )
 			.then(function(resp) {
 
-				lustig.$data.witze = resp.body.data;
-				lustig.$data.active = false;
-				lustig.$data.no_connection_vid = false;
+				left_side.$data.witze = resp.body.data;
+				left_side.$data.show_legit_team = false;
+				left_side.$data.no_connection_vid = false;
 
 			})
 			.catch(function(resp){
 
 				//witze entfernen und video anzeigen das man keine Verbindung hat
-				lustig.$data.no_connection_vid = true;
-				lustig.$data.active = false;
-				lustig.$data.witze = null;
+				left_side.$data.no_connection_vid = true;
+				left_side.$data.show_legit_team = false;
+				left_side.$data.witze = null;
 
 			})
 		},
@@ -211,7 +211,7 @@ var trial_counter = 1;
 
 //Vue für den Automaten und Textfeld auf der rechten Seite
 
-var automat = new Vue({
+var right_side = new Vue({
 	el: ".rechts",
 
 	data: {
@@ -263,7 +263,7 @@ var automat = new Vue({
       				//decrease coin in database
       				this.$http.get(change_coins_link + 'down',{
       					headers: {
-      						'Authorization': lustig.$data.token,
+      						'Authorization': left_side.$data.token,
       					}
       				})
 					localStorage.setItem('coins', 'this.$data.coins');
@@ -280,7 +280,7 @@ var automat = new Vue({
 
 			if(this.selected_category == "Kategorie auswählen"){
 				this.$data.active = true;
-				setTimeout(function(){automat.$data.active = false; }, 500);
+				setTimeout(function(){right_side.$data.active = false; }, 500);
 
 			}
 			else {
@@ -303,7 +303,7 @@ var automat = new Vue({
 
 					},{
 						headers: {
-							'Authorization': lustig.$data.token,
+							'Authorization': left_side.$data.token,
 						}
 					}
 					)
@@ -314,7 +314,7 @@ var automat = new Vue({
 						//small letter
 						this.$data.letter_movement = true;
 						setTimeout(function(){
-							automat.$data.letter_movement = false;
+							right_side.$data.letter_movement = false;
 						}, 1200);
 						setTimeout(function(){
 						}, 1500);
@@ -351,7 +351,7 @@ function ruecksetzung_short() {
 //Die Zeit wird zurück gesetz, damit der Automat sich nicht bewegt!
 
 function change_back(){
-	automat.$data.automat_not_moving = 0;
+	right_side.$data.automat_not_moving = 0;
 }
 
 
