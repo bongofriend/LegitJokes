@@ -3,9 +3,11 @@
 
  body{							/*hintergrund und keine horizontale scrollbar*/
  	background-color: black;
- 	overflow-x: hidden;		
  }
 
+::-webkit-scrollbar { 
+    display: none; 
+}
 
 li{
 	color:white;
